@@ -25,17 +25,10 @@ html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--txt);min-height:100vh;display:flex;overflow-x:hidden}
 
 /* === SIDEBAR === */
-.logo-wrap{flex-shrink:0}
-.ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;transition:all .18s;font-size:.85rem;font-weight:500;color:var(--txt2);border-left:3px solid transparent;user-select:none}
-.ni:hover{background:rgba(245,166,35,.07);color:var(--txt)}
-.ni.active{color:var(--gold);border-left-color:var(--gold);background:rgba(245,166,35,.09)}
-.ni-ic{font-size:.95rem;width:18px;text-align:center}
-.version-badge{display:inline-block;background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.25);border-radius:4px;padding:2px 7px;font-size:.68rem;font-weight:600;font-family:var(--fb);letter-spacing:.04em}
 
 /* === MAIN === */
 #mn{margin-left:0;flex:1;min-height:100vh;display:flex;flex-direction:column}
 #topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.pg-title{font-family:var(--ff);font-size:1.4rem;font-weight:600}
 .tb-actions{display:flex;align-items:center;gap:8px}
 #content{flex:1;padding:24px 28px;width:100%;max-width:1440px}
 
@@ -169,15 +162,12 @@ hr{border:none;border-top:1px solid var(--border);margin:14px 0}
 
 /* === RESPONSIVE === */
 /* Sidebar always hidden — opened only via hamburger */
-#sb.open{transform:translateX(0)}
-#hbg{display:block}
 @media(max-width:600px){
   #content{padding:12px 12px 90px}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .fr2,.fr3{grid-template-columns:1fr}
   .cd-grid{grid-template-columns:repeat(2,1fr)}
   .sc-val{font-size:1.4rem}
-  .pg-title{font-size:1.2rem}
   .ga{grid-template-columns:1fr 1fr}
 }
 @media(max-width:420px){.ga{grid-template-columns:1fr}}
@@ -269,15 +259,12 @@ body.light {
   --txt: #1a1d24; --txt2: #4a5568; --txt3: #8a96aa;
   --ok: #1d8a5e; --warn: #c47e0a; --err: #c7392b; --info: #2970b5;
 }
-body.light .ni.active{background:rgba(196,126,10,.08)}
-body.light .ni:hover{background:rgba(196,126,10,.05)}
 body.light #topbar{background:var(--bg2);border-bottom-color:var(--border)}
 body.light .ov{background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
 body.light .modal{background:var(--bg2);border-color:var(--border)}
 body.light .btn-p{background:linear-gradient(135deg,var(--amber),var(--coral));color:#fff}
 body.light .fc{background:var(--bg2);border-color:var(--border);color:var(--txt)}
 body.light .fc option{background:var(--bg2)}
-body.light .version-badge{background:rgba(196,126,10,.1);border-color:rgba(196,126,10,.25)}
 body.light tr:hover td{background:rgba(0,0,0,.02)}
 body.light .sc{background:var(--bg3);border-color:var(--border)}
 body.light .card{background:var(--bg2);border-color:var(--border)}
@@ -521,6 +508,7 @@ body.mobile #content { padding-bottom: 90px; }
           <path d="M38,27 Q42,23 40,19 Q38,15 41,13" stroke="#f9a8c9" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
         <div>
+          <div id="topbar-greeting" style="font-size:.72rem;color:var(--txt3);font-weight:500;letter-spacing:.02em;line-height:1;margin-bottom:2px"></div>
           <div class="logo-name" style="font-size:1.1rem">FamilyFinance</div>
           <div class="logo-tag">Personal Finance Hub</div>
         </div>
@@ -670,7 +658,6 @@ body.mobile #content { padding-bottom: 90px; }
         <div class="card">
           <div class="card-title">👤 Your Profile</div>
           <div class="fg"><label class="fl">Full Name</label><input class="fc" id="s-name" placeholder="Your Name"></div>
-          <div class="fg"><label class="fl">Birth Date</label><input type="date" class="fc" id="s-birth" value="1998-01-01"></div>
           <button class="btn btn-p" onclick="saveSettings()">Save Profile</button>
         </div>
 
@@ -1042,7 +1029,7 @@ body.mobile #content { padding-bottom: 90px; }
         • <strong>Goal Countdown &amp; Financial Goals</strong> — One combined card: your #1 priority goal countdown on the left (with a savings progress bar for amount-based goals), and your full goals list on the right.<br>
         • <strong>Key Stats</strong> — Four cards in a 2×2 grid: Total Savings, Total Debt, Monthly Surplus, and Lowest Credit Score.<br>
         • <strong>This Month's Bills Summary</strong> — Quick view of bills for the current month.<br><br>
-        <strong>First steps:</strong> Go to Settings and enter your name, birth date, and income. Then add bills, budget items, and debts.
+        <strong>First steps:</strong> Go to Settings and enter your name. Then add bills, budget items, and debts. Then add bills, budget items, and debts.
       </div>
     </div>
     <div id="help-goals" class="hidden">
@@ -1119,7 +1106,7 @@ body.mobile #content { padding-bottom: 90px; }
     <div id="help-settings" class="hidden">
       <div class="alert al-info" style="font-size:.82rem;line-height:1.7">
         <strong>Settings — Profile, Goals & Data Management</strong><br><br>
-        <strong>Profile:</strong> Enter your name and birth date. Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br><strong>Layout:</strong> Switch between Desktop (bottom nav with full labels, multi-column layout) and Mobile (bottom nav with short labels, single column, larger touch targets). The app auto-detects your device on first visit. The app auto-detects your device on every load — no manual override needed.<br><br>
+        <strong>Profile:</strong> Enter your name — it appears in the top banner as "Name's FamilyFinance". Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br><strong>Layout:</strong> Switch between Desktop (bottom nav with full labels, multi-column layout) and Mobile (bottom nav with short labels, single column, larger touch targets). The app auto-detects your device on first visit. The app auto-detects your device on every load — no manual override needed.<br><br>
         <strong>Financial Readiness Gauge:</strong> The gauge scores your financial health using your savings balance, debt load, credit score, and budget surplus. Add savings accounts via the Goals section to improve the savings component.<br><br>
         <strong>Data Management:</strong><br>
         • <strong>Export All Data (JSON)</strong> — Saves a complete backup of everything in the app. Do this regularly!<br>
@@ -1175,6 +1162,22 @@ body.mobile #content { padding-bottom: 90px; }
     <div class="mh">
       <div class="mt">📋 FamilyFinance — Version History</div>
       <button class="mx" onclick="closeModal('changelog-modal')">✕</button>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.8.5 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Code cleanup — removed all remaining birthDate references (defaultData, saveSettings), calcAge() unused function, .ni/.ni-ic/.pg-title/.logo-wrap/.sb-ov/.sb-foot CSS rules, .version-badge CSS, and stale sidebar comment placeholders</li>
+        <li>All removed elements were holdovers from the sidebar navigation redesign</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.8.4 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Removed Birth Date from Settings — field was stored but never used anywhere in the app</li>
+        <li>Name now appears in the topbar above the FamilyFinance logo as "Name's" (e.g. "John's FamilyFinance") — updates live when saved in Settings; hidden when no name is set</li>
+      </ul>
     </div>
 
     <div class="cl-entry">
@@ -1713,7 +1716,7 @@ body.mobile #content { padding-bottom: 90px; }
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.8.3';
+const APP_VERSION = '1.8.5';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -1725,7 +1728,7 @@ function defaultData() {
   const curYear = today.getFullYear();
   const curMonth = (today.getMonth()+1).toString();
   return {
-    profile: { name:'Your Name', birthDate:'1998-01-01', retirementDate:'2055-01-01', yos:0,
+    profile: { name:'Your Name', retirementDate:'2055-01-01', yos:0,
       grossIncome:60000, netMonthly:3800, retirementGoalMonthly:4000, targetNetWorth:500000,
       emergencyFundGoal:15000 },
     bills: { [curYear.toString()]: { [curMonth]: [
@@ -1893,27 +1896,11 @@ function timeUntil(dateStr) {
 }
 function todayStr() { return new Date().toISOString().split('T')[0]; }
 
-function calcAge(birthDateStr, asOfDateStr) {
-  const b = new Date(birthDateStr+'T12:00:00');
-  const d = asOfDateStr ? new Date(asOfDateStr+'T12:00:00') : new Date();
-  let age = d.getFullYear() - b.getFullYear();
-  const mDiff = d.getMonth() - b.getMonth();
-  if (mDiff < 0 || (mDiff === 0 && d.getDate() < b.getDate())) age--;
-  return age;
-}
-
-// ── NAVIGATION ──────────────────────────────────────────────
-const PAGE_TITLES = {
-  dashboard:'Dashboard', bills:'Bill Tracker', budget:'Budget Planner',
-  debt:'Debt Eliminator', credit:'Credit Score Hub', goals:'My Goals', settings:'Profile & Settings'
-};
-
 function nav(page) {
   document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
   // .ni elements removed with sidebar
   $$('pg-' + page).classList.add('active');
   // .ni elements removed with sidebar
-  // pg-title removed — logo always shows in topbar
   // tb-actions contains persistent controls (theme, layout, help) — leave them in place
   // Show mini gauge only on dashboard
   var gt = $$('gauge-topbar');
@@ -1968,10 +1955,8 @@ function renderDashboard() {
   var _name = (D.profile && D.profile.name && D.profile.name.trim() && D.profile.name !== 'Your Name')
     ? D.profile.name.trim() : '';
   if (_name) {
-    if ($$('pg-title')) $$('pg-title').innerHTML =
       '<span style="color:var(--txt2);font-weight:400">' + _name + '’s </span>Dashboard';
   } else {
-    if ($$('pg-title')) $$('pg-title').textContent = 'Dashboard';
   }
   var fns = [renderCountdown, renderGauge, renderDashStats, renderDashBills, renderMilestonesList];
   fns.forEach(function(fn) {
@@ -5001,16 +4986,23 @@ function syncMobileNav(page) {
 }
 
 
+// ── TOPBAR GREETING ──────────────────────────────────────────
+function renderGreeting() {
+  var el = $$('topbar-greeting');
+  if (!el) return;
+  var name = (D.profile && D.profile.name && D.profile.name !== 'Your Name') ? D.profile.name.trim() : '';
+  el.textContent = name ? name + '’s' : '';  // apostrophe-s, empty if no name set
+}
+
 // ── SETTINGS ──────────────────────────────────────────────
 function loadSettings() {
   const p = D.profile;
   $$('s-name').value = p.name||'';
-  $$('s-birth').value = p.birthDate||'';
 }
 
 function saveSettings() {
   D.profile = {
-    name: $$('s-name').value, birthDate: $$('s-birth').value, retirementDate: D.profile.retirementDate||'',
+    name: $$('s-name').value, retirementDate: D.profile.retirementDate||'',
     yos: 0, grossIncome: 0, netMonthly: 0,
     retirementGoalMonthly: D.profile.retirementGoalMonthly||0,
     targetNetWorth: D.profile.targetNetWorth||0,
@@ -5523,6 +5515,7 @@ function init() {
   setTheme(savedTheme);
   setLayout(savedLayout);
   if ($$('help-ver')) $$('help-ver').textContent = 'v' + APP_VERSION;
+  renderGreeting();
   window._appLoaded = true;
 }
 
