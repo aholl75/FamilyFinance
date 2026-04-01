@@ -331,14 +331,20 @@ body.mobile .card { padding: 14px; max-width: 100%; }
 body.mobile .card-title { font-size: .92rem; }
 body.mobile .sc-val { font-size: 1.35rem; }
 
-/* Grids */
+/* Grids — min-width:0 on items is essential to prevent expansion beyond 1fr */
 body.mobile .g2,
 body.mobile .g3,
 body.mobile .g4,
 body.mobile .fr2,
 body.mobile .fr3 { grid-template-columns: 1fr !important; gap: 10px; }
+body.mobile .g2 > *,
+body.mobile .g3 > *,
+body.mobile .g4 > *,
+body.mobile .fr2 > *,
+body.mobile .fr3 > * { min-width: 0; max-width: 100%; }
 body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
 body.mobile .ga { grid-template-columns: 1fr 1fr !important; }
+body.mobile .ga > * { min-width: 0; }
 body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
 
 /* Dashboard merged card */
@@ -353,9 +359,12 @@ body.mobile #pg-dashboard .card > .flex > div:last-child { padding-left: 0 !impo
 
 /* Tables — scroll within card, shadow hint on right edge */
 body.mobile .tw {
+  display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%; max-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 body.mobile .tw table { min-width: 300px; font-size: .78rem; }
 body.mobile .tw th,
@@ -364,8 +373,10 @@ body.mobile .mob-hide { display: none !important; }
 
 /* Month tabs — scroll with fade hint */
 body.mobile .mtabs {
+  display: flex;
+  width: 100%; max-width: 100%;
   gap: 3px; overflow-x: auto; -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap !important; max-width: 100%;
+  flex-wrap: nowrap !important;
   background:
     linear-gradient(to right, var(--bg) 0%, transparent 20px) left no-repeat,
     linear-gradient(to left, var(--bg) 0%, transparent 20px) right no-repeat,
@@ -1167,6 +1178,15 @@ body.mobile #content { padding-bottom: 90px; }
     </div>
 
     <div class="cl-entry">
+      <div class="cl-ver">v1.8.3 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed Budget Income Sources, Expense Budget, Financial Targets, and Surplus Allocation not fitting mobile width — root cause was CSS Grid min-width:auto: grid items (.card) expand to min-content width by default, ignoring the 1fr column constraint; added min-width:0 to all grid item selectors which is the standard fix for this</li>
+        <li>Fixed month tabs still going off screen — added explicit width:100% and display:flex to .mtabs on mobile so the flex container is bound to the viewport width before scrolling</li>
+        <li>Fixed .tw (table wrapper) to use display:block and box-sizing:border-box so it is truly constrained to card width before allowing inner table to scroll</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
       <div class="cl-ver">v1.8.2 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
       <ul class="cl-items">
         <li>Fixed Budget Income Sources and Expense Budget horizontal scroll — overflow-x:clip on .card was blocking scroll containers inside cards (same root cause as before, one level deeper); removed from .card entirely</li>
@@ -1693,7 +1713,7 @@ body.mobile #content { padding-bottom: 90px; }
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.8.2';
+const APP_VERSION = '1.8.3';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
