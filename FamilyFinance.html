@@ -16,7 +16,7 @@
   --sky: #3d8bd4; --pine: #2d7a5f; --lavender: #7b68b2;
   --txt: #edf2f7; --txt2: #8a96aa; --txt3: #4a5568;
   --ok: #52b788; --warn: #f5a623; --err: #e05545; --info: #3d8bd4;
-  --r: 11px; --rs: 7px; --sw: 230px;
+  --r: 11px; --rs: 7px;
   --ff: 'Cormorant Garamond', Georgia, serif;
   --fb: 'DM Sans', system-ui, sans-serif;
 }
@@ -25,21 +25,15 @@ html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--txt);min-height:100vh;display:flex;overflow-x:hidden}
 
 /* === SIDEBAR === */
-#sb{width:var(--sw);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transition:transform .3s ease}
-.sb-logo{padding:18px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
 .logo-wrap{flex-shrink:0}
-.logo-name{font-family:var(--ff);font-size:1.45rem;font-weight:700;background:linear-gradient(140deg,var(--gold),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.logo-tag{font-size:0.63rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.sb-nav{flex:1;padding:10px 0;overflow-y:auto}
 .ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;transition:all .18s;font-size:.85rem;font-weight:500;color:var(--txt2);border-left:3px solid transparent;user-select:none}
 .ni:hover{background:rgba(245,166,35,.07);color:var(--txt)}
 .ni.active{color:var(--gold);border-left-color:var(--gold);background:rgba(245,166,35,.09)}
 .ni-ic{font-size:.95rem;width:18px;text-align:center}
-.sb-foot{padding:12px 16px;border-top:1px solid var(--border);font-size:.68rem;color:var(--txt3)}
 .version-badge{display:inline-block;background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.25);border-radius:4px;padding:2px 7px;font-size:.68rem;font-weight:600;font-family:var(--fb);letter-spacing:.04em}
 
 /* === MAIN === */
-#mn{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column}
+#mn{margin-left:0;flex:1;min-height:100vh;display:flex;flex-direction:column}
 #topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .pg-title{font-family:var(--ff);font-size:1.4rem;font-weight:600}
 .tb-actions{display:flex;align-items:center;gap:8px}
@@ -168,20 +162,15 @@ hr{border:none;border-top:1px solid var(--border);margin:14px 0}
 .star{color:var(--gold)}
 
 /* === HAMBURGER === */
-#hbg{display:none;background:none;border:none;color:var(--txt);font-size:1.3rem;cursor:pointer;padding:4px}
 
 /* === SIDEBAR OVERLAY === */
-#sb-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:150}
 
 /* === RESPONSIVE === */
-@media(max-width:768px){
-  #sb{transform:translateX(-100%)}
-  #sb.open{transform:translateX(0)}
-  #sb-ov{display:none}
-  #sb.open ~ #sb-ov{display:block}
-  #mn{margin-left:0}
-  #hbg{display:block}
-  #content{padding:14px 15px}
+/* Sidebar always hidden — opened only via hamburger */
+#sb.open{transform:translateX(0)}
+#hbg{display:block}
+@media(max-width:600px){
+  #content{padding:12px 12px 90px}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .fr2,.fr3{grid-template-columns:1fr}
   .cd-grid{grid-template-columns:repeat(2,1fr)}
@@ -224,12 +213,506 @@ hr{border:none;border-top:1px solid var(--border);margin:14px 0}
 .cl-items li{font-size:.8rem;color:var(--txt2);padding:3px 0 3px 14px;position:relative;line-height:1.5}
 .cl-items li::before{content:"·";position:absolute;left:2px;color:var(--txt3)}
 
+/* Topbar logo */
+.topbar-logo { text-decoration: none; }
+.topbar-logo:hover { opacity: .85; }
+
 /* === MINI GAUGE (topbar) === */
 #gauge-topbar{display:none;align-items:center;gap:6px;padding:0 10px;border-left:1px solid var(--border);margin-left:8px}
 #gauge-topbar.visible{display:flex}
 .gauge-mini-wrap{display:flex;flex-direction:column;align-items:center;line-height:1}
 .gauge-mini-pct{font-family:var(--ff);font-size:.95rem;font-weight:700;color:var(--gold)}
 .gauge-mini-lbl{font-size:.58rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;white-space:nowrap}
+
+/* ============================================================
+   MOBILE LAYOUT MODE  (body.mobile)
+   ============================================================ */
+
+/* Base */
+body.mobile { font-size: 16px; }
+body.mobile #content { padding: 12px 14px 90px; }
+
+/* Sidebar: hamburger-only */
+
+/* Topbar */
+body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px 10px; }
+body.mobile .tb-actions { flex-wrap: wrap; gap: 6px; }
+body.mobile .theme-toggle { margin-top: 0; }
+body.mobile .pg-title { font-size: 1.1rem; }
+
+/* Section headers: stack title above buttons */
+body.mobile .sh { flex-direction: column; align-items: flex-start; gap: 8px; }
+body.mobile .sh .st { font-size: 1.05rem; }
+body.mobile .sh > .flex,
+body.mobile .sh > button { width: 100%; }
+body.mobile .sh .flex { flex-wrap: wrap; gap: 6px; }
+body.mobile .sh .btn,
+body.mobile .sh > button.btn {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 120px;
+  justify-content: center;
+  text-align: center;
+  padding: 9px 8px;
+  font-size: .82rem;
+}
+body.mobile .sh select.fc { width: 100% !important; }
+
+/* Cards */
+body.mobile .card-title { font-size: .95rem; }
+body.mobile .sc-val { font-size: 1.4rem; }
+
+/* All 2/3/4-col grids → single column */
+body.mobile .g2,
+body.mobile .g3,
+body.mobile .g4,
+body.mobile .fr2,
+body.mobile .fr3 { grid-template-columns: 1fr !important; gap: 12px; }
+
+/* Stat cards stay 2×2 */
+body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
+
+/* Auto-fit grids → 2-col minimum */
+body.mobile .ga { grid-template-columns: 1fr 1fr !important; }
+
+/* Countdown tiles 2×2 */
+body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
+
+/* Dashboard merged card: stack vertically */
+body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
+body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { display: none; }
+body.mobile #pg-dashboard .card > .flex > div:first-child {
+  padding-right: 0 !important;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+body.mobile #pg-dashboard .card > .flex > div:last-child { padding-left: 0 !important; }
+
+/* Tables: horizontal scroll with touch */
+body.mobile .tw {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -14px;
+  padding: 0 14px;
+  padding-bottom: 4px;
+}
+body.mobile .tw table { min-width: 560px; font-size: .8rem; }
+body.mobile .tw th,
+body.mobile .tw td { padding: 8px 6px; white-space: nowrap; }
+
+/* Month tabs: compact, wrap */
+body.mobile .mtabs { gap: 4px; }
+body.mobile .mtab { padding: 5px 8px; font-size: .68rem; }
+
+/* Tab bars: horizontal scroll */
+body.mobile .tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+}
+body.mobile .tab { white-space: nowrap; padding: 8px 12px; font-size: .8rem; }
+
+/* Forms */
+body.mobile .fc { padding: 10px 12px; font-size: .95rem; min-height: 42px; }
+body.mobile .fl { font-size: .78rem; }
+body.mobile .fg { margin-bottom: 14px; }
+
+/* Buttons */
+body.mobile .btn { min-height: 40px; }
+body.mobile .btn-sm { padding: 8px 12px; font-size: .82rem; }
+body.mobile .btn-xs { padding: 6px 10px; font-size: .78rem; }
+
+/* Settings: full width */
+body.mobile [style*="max-width:560px"] { max-width: 100% !important; }
+
+/* Hide non-essential bill table columns on mobile */
+body.mobile .mob-hide { display: none !important; }
+body.mobile .tw table { min-width: 340px; }
+
+/* Modals: slide up from bottom */
+body.mobile .ov { align-items: flex-end; padding: 0; }
+body.mobile .modal {
+  max-width: 100% !important;
+  max-height: 92vh;
+  border-radius: var(--r) var(--r) 0 0;
+}
+
+/* Light mode overrides for mobile */
+body.light.mobile #mobile-nav { background: var(--bg2); border-top-color: var(--border); }=1.0">
+<title>FamilyFinance — Personal Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root {
+  --bg: #0b0f1a; --bg2: #111827; --bg3: #1c2333; --bg4: #232d42;
+  --border: #252f45; --border2: #2e3d5a;
+  --gold: #f5a623; --amber: #e8883a; --coral: #e05545;
+  --sky: #3d8bd4; --pine: #2d7a5f; --lavender: #7b68b2;
+  --txt: #edf2f7; --txt2: #8a96aa; --txt3: #4a5568;
+  --ok: #52b788; --warn: #f5a623; --err: #e05545; --info: #3d8bd4;
+  --r: 11px; --rs: 7px;
+  --ff: 'Cormorant Garamond', Georgia, serif;
+  --fb: 'DM Sans', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--txt);min-height:100vh;display:flex;overflow-x:hidden}
+
+/* === SIDEBAR === */
+.logo-wrap{flex-shrink:0}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;transition:all .18s;font-size:.85rem;font-weight:500;color:var(--txt2);border-left:3px solid transparent;user-select:none}
+.ni:hover{background:rgba(245,166,35,.07);color:var(--txt)}
+.ni.active{color:var(--gold);border-left-color:var(--gold);background:rgba(245,166,35,.09)}
+.ni-ic{font-size:.95rem;width:18px;text-align:center}
+.version-badge{display:inline-block;background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.25);border-radius:4px;padding:2px 7px;font-size:.68rem;font-weight:600;font-family:var(--fb);letter-spacing:.04em}
+
+/* === MAIN === */
+#mn{margin-left:0;flex:1;min-height:100vh;display:flex;flex-direction:column}
+#topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.pg-title{font-family:var(--ff);font-size:1.4rem;font-weight:600}
+.tb-actions{display:flex;align-items:center;gap:8px}
+#content{flex:1;padding:24px 28px;width:100%;max-width:1440px}
+
+/* === CARDS === */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;transition:border-color .2s}
+.card:hover{border-color:var(--border2)}
+.card-title{font-family:var(--ff);font-size:1.05rem;font-weight:600;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-sub{font-size:.72rem;color:var(--txt2);font-weight:400;margin-left:auto}
+
+/* === GRID === */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ga{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+
+/* === STAT CARDS === */
+.sc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
+.sc-lbl{font-size:.67rem;text-transform:uppercase;letter-spacing:.09em;color:var(--txt3);font-weight:600;margin-bottom:5px}
+.sc-val{font-family:var(--ff);font-size:1.75rem;font-weight:700;color:var(--txt);line-height:1}
+.sc-sub{font-size:.72rem;margin-top:4px;color:var(--txt2)}
+.sc-sub.up{color:var(--ok)}.sc-sub.dn{color:var(--err)}
+
+/* === BUTTONS === */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--rs);font-family:var(--fb);font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none}
+.btn-p{background:linear-gradient(135deg,var(--amber),var(--coral));color:#fff;border:none}.btn-p:hover{opacity:.88;transform:translateY(-1px)}
+.btn-s{background:transparent;border-color:var(--border2);color:var(--txt2)}.btn-s:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,166,35,.06)}
+.btn-ok{background:rgba(82,183,136,.15);border-color:var(--ok);color:var(--ok)}.btn-ok:hover{background:rgba(82,183,136,.25)}
+.btn-err{background:transparent;border-color:var(--err);color:var(--err)}.btn-err:hover{background:rgba(224,85,69,.1)}
+.btn-sm{padding:4px 9px;font-size:.72rem}
+.btn-xs{padding:3px 7px;font-size:.68rem}
+
+/* === FORMS === */
+.fg{margin-bottom:12px}
+.fl{display:block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--txt2);margin-bottom:4px}
+.fc{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:var(--rs);padding:8px 11px;color:var(--txt);font-family:var(--fb);font-size:.85rem;transition:border-color .2s;outline:none}
+.fc:focus{border-color:var(--gold)}
+.fc option{background:var(--bg3)}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+textarea.fc{resize:vertical;min-height:70px}
+input[type=checkbox].fc{width:auto;cursor:pointer}
+.chk-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.chk-row label{font-size:.83rem;color:var(--txt2);cursor:pointer}
+
+/* === MODALS === */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);width:100%;max-width:530px;max-height:92vh;overflow-y:auto;padding:22px;animation:mIn .22s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(-16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:20px;height:20px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.mt{font-family:var(--ff);font-size:1.3rem;font-weight:600}
+.mx{background:none;border:none;color:var(--txt2);font-size:1.1rem;cursor:pointer;padding:4px;transition:color .2s}.mx:hover{color:var(--txt)}
+.mf{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+
+/* === TABLES === */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+th{text-align:left;padding:7px 11px;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--txt3);border-bottom:1px solid var(--border)}
+td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--txt2)}
+tr:hover td{background:rgba(255,255,255,.02);color:var(--txt)}
+tr:last-child td{border-bottom:none}
+.td-num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* === TABS === */
+.tabs{display:flex;gap:3px;background:var(--bg);padding:3px;border-radius:var(--rs);margin-bottom:18px;overflow-x:auto;flex-shrink:0}
+.tab{padding:6px 13px;border-radius:5px;font-size:.78rem;font-weight:500;color:var(--txt3);cursor:pointer;transition:all .18s;white-space:nowrap;border:none;background:none}
+.tab:hover{color:var(--txt);background:var(--bg3)}
+.tab.on{background:var(--bg3);color:var(--gold);border:1px solid var(--border)}
+
+/* === PROGRESS === */
+.pb{height:5px;background:var(--bg);border-radius:999px;overflow:hidden;margin-top:6px}
+.pf{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--amber),var(--coral));transition:width .5s ease}
+.pf.g{background:linear-gradient(90deg,#52b788,#40916c)}
+.pf.b{background:linear-gradient(90deg,var(--sky),#2171b5)}
+.pf.l{background:linear-gradient(90deg,var(--lavender),#5a4a9e)}
+
+/* === BADGES === */
+.bdg{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:.67rem;font-weight:600}
+.bdg-ok{background:rgba(82,183,136,.14);color:var(--ok)}
+.bdg-warn{background:rgba(245,166,35,.14);color:var(--warn)}
+.bdg-err{background:rgba(224,85,69,.14);color:var(--err)}
+.bdg-info{background:rgba(61,139,212,.14);color:var(--info)}
+.bdg-neu{background:var(--bg4);color:var(--txt2)}
+
+/* === COUNTDOWN === */
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+.cd-u{text-align:center;background:var(--bg);border-radius:var(--rs);padding:10px 6px;border:1px solid var(--border)}
+.cd-n{font-family:var(--ff);font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.cd-l{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-top:3px}
+
+/* === GAUGE === */
+.gauge-box{display:flex;flex-direction:column;align-items:center;padding:8px 0}
+.gauge-pct{font-family:var(--ff);font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
+.gauge-lbl{font-size:.72rem;color:var(--txt2);margin-top:4px;text-align:center}
+
+/* === MONTH TABS === */
+.mtabs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:14px}
+.mtab{padding:4px 10px;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--txt3);transition:all .18s}
+.mtab:hover{border-color:var(--gold);color:var(--gold)}
+.mtab.on{background:rgba(245,166,35,.13);border-color:var(--gold);color:var(--gold)}
+
+/* === SCORE CIRCLES === */
+.sc-ring{display:flex;flex-direction:column;align-items:center;justify-content:center;width:90px;height:90px;border-radius:50%;border:3px solid;flex-shrink:0}
+.sc-ring.exc{border-color:var(--ok)}.sc-ring.gd{border-color:var(--sky)}.sc-ring.fr{border-color:var(--gold)}.sc-ring.pr{border-color:var(--err)}
+
+/* === ALERTS === */
+.alert{padding:10px 14px;border-radius:var(--rs);font-size:.82rem;margin-bottom:10px;border-left:3px solid}
+.al-info{background:rgba(61,139,212,.09);border-color:var(--info)}.al-warn{background:rgba(245,166,35,.09);border-color:var(--warn)}.al-ok{background:rgba(82,183,136,.09);border-color:var(--ok)}.al-err{background:rgba(224,85,69,.09);border-color:var(--err)}
+
+/* === DIVIDERS / UTILS === */
+hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+.flex{display:flex}.fc-col{flex-direction:column}.aic{align-items:center}.jcb{justify-content:space-between}.jce{justify-content:flex-end}.g2x{gap:8px}.g3x{gap:12px}
+.mt1{margin-top:4px}.mt2{margin-top:8px}.mt3{margin-top:12px}.mt4{margin-top:16px}.mb2{margin-bottom:8px}.mb3{margin-bottom:12px}.mb4{margin-bottom:16px}
+.tr{text-align:right}.tc{text-align:center}
+.txt-ok{color:var(--ok)}.txt-err{color:var(--err)}.txt-warn{color:var(--gold)}.txt-2{color:var(--txt2)}.txt-3{color:var(--txt3)}
+.ff{font-family:var(--ff)}.fw7{font-weight:700}.fs-sm{font-size:.8rem}.fs-xs{font-size:.72rem}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.st{font-family:var(--ff);font-size:1.15rem;font-weight:600}
+.hidden{display:none!important}
+.empty{text-align:center;padding:36px 20px;color:var(--txt3)}
+.empty i{font-size:2rem;margin-bottom:8px;display:block}
+.section-page{display:none}.section-page.active{display:block}
+.star{color:var(--gold)}
+
+/* === HAMBURGER === */
+
+/* === SIDEBAR OVERLAY === */
+
+/* === RESPONSIVE === */
+/* Sidebar always hidden — opened only via hamburger */
+#sb.open{transform:translateX(0)}
+#hbg{display:block}
+@media(max-width:600px){
+  #content{padding:12px 12px 90px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .fr2,.fr3{grid-template-columns:1fr}
+  .cd-grid{grid-template-columns:repeat(2,1fr)}
+  .sc-val{font-size:1.4rem}
+  .pg-title{font-size:1.2rem}
+  .ga{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){.ga{grid-template-columns:1fr}}
+
+/* === CITY CARDS === */
+.city-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px;position:relative}
+.city-score{position:absolute;top:12px;right:14px;font-family:var(--ff);font-size:1.6rem;font-weight:700}
+.city-score.hi{color:var(--ok)}.city-score.md{color:var(--gold)}.city-score.lo{color:var(--err)}
+.city-name{font-family:var(--ff);font-size:1.1rem;font-weight:600;margin-bottom:2px}
+.city-state{font-size:.72rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em}
+.city-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.city-stat{background:var(--bg);border-radius:var(--rs);padding:7px 10px}
+.city-stat-lbl{font-size:.63rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.06em}
+.city-stat-val{font-size:.88rem;font-weight:600;color:var(--txt);margin-top:1px}
+
+/* === DEBT CARD === */
+.debt-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;transition:border-color .18s}
+.debt-card:hover{border-color:var(--border2)}
+.debt-name{font-weight:600;font-size:.9rem}
+.debt-meta{display:flex;align-items:center;gap:10px;margin-top:5px;flex-wrap:wrap}
+
+/* === HEALTH CARD === */
+.hcard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px}
+
+/* === CHANGELOG === */
+.cl-entry{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.cl-entry:last-child{border-bottom:none;margin-bottom:0}
+.cl-ver{font-family:var(--ff);font-size:1.1rem;font-weight:700;color:var(--gold)}
+.cl-date{font-size:.7rem;color:var(--txt3);margin-left:8px;font-weight:400;font-family:var(--fb)}
+.cl-tag{display:inline-flex;align-items:center;padding:1px 6px;border-radius:4px;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-left:6px}
+.cl-tag-major{background:rgba(224,85,69,.15);color:var(--coral)}
+.cl-tag-bundle{background:rgba(61,139,212,.15);color:var(--sky)}
+.cl-tag-fix{background:rgba(82,183,136,.15);color:var(--ok)}
+.cl-items{margin-top:8px;list-style:none;padding:0}
+.cl-items li{font-size:.8rem;color:var(--txt2);padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.cl-items li::before{content:"·";position:absolute;left:2px;color:var(--txt3)}
+
+/* Topbar logo */
+.topbar-logo { text-decoration: none; }
+.topbar-logo:hover { opacity: .85; }
+
+/* === MINI GAUGE (topbar) === */
+#gauge-topbar{display:none;align-items:center;gap:6px;padding:0 10px;border-left:1px solid var(--border);margin-left:8px}
+#gauge-topbar.visible{display:flex}
+.gauge-mini-wrap{display:flex;flex-direction:column;align-items:center;line-height:1}
+.gauge-mini-pct{font-family:var(--ff);font-size:.95rem;font-weight:700;color:var(--gold)}
+.gauge-mini-lbl{font-size:.58rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;white-space:nowrap}
+
+/* ============================================================
+   MOBILE LAYOUT MODE  (body.mobile)
+   Activated by Layout toggle or auto-detected on small screens
+   ============================================================ */
+/* Base font larger for readability */
+body.mobile { font-size: 16px; }
+
+/* Sidebar opens via hamburger in both modes */
+body.mobile #content { padding: 12px 14px 90px; }  /* bottom padding for nav bar */
+
+/* Single column everything */
+body.mobile .g2,
+body.mobile .g3,
+body.mobile .g4,
+body.mobile .ga,
+body.mobile .fr2,
+body.mobile .fr3 { grid-template-columns: 1fr !important; }
+
+/* Stat cards: 2-up grid instead of 1 */
+body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
+
+/* Countdown grid: 2x2 */
+body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
+
+/* Bigger tap targets for buttons */
+body.mobile .btn { padding: 10px 16px; font-size: .88rem; min-height: 40px; }
+body.mobile .btn-sm { padding: 8px 12px; font-size: .82rem; }
+body.mobile .btn-xs { padding: 6px 10px; font-size: .78rem; }
+
+/* Full-width primary action buttons in section headers */
+body.mobile .sh .btn-p { width: 100%; justify-content: center; margin-top: 8px; }
+body.mobile .sh { flex-wrap: wrap; }
+
+/* Larger form fields */
+body.mobile .fc { padding: 10px 12px; font-size: .95rem; min-height: 42px; }
+body.mobile .fl { font-size: .78rem; }
+
+/* Bigger type for key values */
+body.mobile .sc-val { font-size: 1.5rem; }
+body.mobile .pg-title { font-size: 1.15rem; }
+body.mobile .card-title { font-size: 1rem; }
+
+/* Tables scroll horizontally */
+body.mobile .tw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+body.mobile table { min-width: 480px; font-size: .82rem; }
+
+/* Tabs scroll horizontally */
+body.mobile .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+body.mobile .tab { white-space: nowrap; padding: 8px 14px; font-size: .82rem; }
+
+/* Merged countdown/goals card — stack vertically on mobile */
+body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
+body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { 
+  display: none; /* hide vertical divider */
+}
+body.mobile #pg-dashboard .card > .flex > div:first-child { 
+  padding-right: 0 !important;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+body.mobile #pg-dashboard .card > .flex > div:last-child { 
+  padding-left: 0 !important;
+}
+
+/* Modal: full screen on mobile */
+body.mobile .modal {
+  max-width: 100% !important;
+  max-height: 95vh;
+  margin: 0;
+  border-radius: var(--r) var(--r) 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+body.mobile .ov {
+  align-items: flex-end;
+  padding: 0;
+}
+
+
+
+/* On narrow mobile, hide the logo subtitle to save space */
+body.mobile .logo-tag { display: none; }
+body.mobile .logo-name { font-size: .95rem !important; }
+
+/* Topbar wraps on narrow mobile screens */
+body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 16px 10px; }
+body.mobile .tb-actions { flex-wrap: wrap; gap: 6px; }
+body.mobile .theme-toggle { margin-top: 0; }
+
+/* ── BOTTOM NAV BAR (desktop + mobile) ─────────────────────── */
+/* Labels: long in desktop, short in mobile */
+.mnav-short { display: none; }
+.mnav-long  { display: inline; }
+body.mobile .mnav-short { display: inline; }
+body.mobile .mnav-long  { display: none; }
+
+#mobile-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  z-index: 190;
+  padding: 4px 0 max(4px, env(safe-area-inset-bottom));
+}
+
+/* Desktop: icon + label side-by-side, full names */
+.mnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 6px;
+  cursor: pointer;
+  color: var(--txt3);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  border: none;
+  background: none;
+  transition: color .15s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.mnav-item .mni { font-size: 1rem; line-height: 1; flex-shrink: 0; }
+.mnav-item.active { color: var(--gold); }
+.mnav-item:hover { color: var(--txt); }
+
+/* Mobile: icon stacked above short label */
+body.mobile .mnav-item {
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 4px;
+  font-size: .6rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 600;
+}
+body.mobile .mnav-item .mni { font-size: 1.2rem; }
+
+/* Content bottom padding so nav bar doesn't cover content */
+#content { padding-bottom: 72px; }
+body.mobile #content { padding-bottom: 90px; }
+
+/* Light mode */
+body.light #mobile-nav { background: var(--bg2); border-top-color: var(--border); }
 
 /* === SCROLLBAR === */
 ::-webkit-scrollbar{width:5px;height:5px}
@@ -273,11 +756,8 @@ body.light {
   --txt: #1a1d24; --txt2: #4a5568; --txt3: #8a96aa;
   --ok: #1d8a5e; --warn: #c47e0a; --err: #c7392b; --info: #2970b5;
 }
-body.light .sb-logo{border-bottom-color:var(--border)}
-body.light .logo-name{background:linear-gradient(140deg,var(--gold),var(--coral));-webkit-background-clip:text;background-clip:text}
 body.light .ni.active{background:rgba(196,126,10,.08)}
 body.light .ni:hover{background:rgba(196,126,10,.05)}
-body.light #sb{background:var(--bg2);border-right-color:var(--border)}
 body.light #topbar{background:var(--bg2);border-bottom-color:var(--border)}
 body.light .ov{background:rgba(0,0,0,.35);backdrop-filter:blur(4px)}
 body.light .modal{background:var(--bg2);border-color:var(--border)}
@@ -302,71 +782,38 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
 <body>
 
 <!-- SIDEBAR OVERLAY (mobile) -->
-<div id="sb-ov" onclick="closeSidebar()"></div>
-
-<!-- SIDEBAR -->
-<nav id="sb">
-  <div class="sb-logo">
-    <div class="logo-wrap">
-      <svg viewBox="0 0 44 44" width="38" height="38">
-        <!-- Pig body -->
-        <ellipse cx="22" cy="27" rx="16" ry="13" fill="#f9a8c9"/>
-        <ellipse cx="22" cy="25" rx="14" ry="11" fill="#fbc8dd"/>
-        <!-- Snout -->
-        <ellipse cx="27" cy="32" rx="6" ry="4.5" fill="#f9a8c9"/>
-        <circle cx="25.5" cy="32.5" r="1.2" fill="#d6629a"/>
-        <circle cx="28.5" cy="32.5" r="1.2" fill="#d6629a"/>
-        <!-- Eye -->
-        <circle cx="16" cy="23" r="2.2" fill="white"/>
-        <circle cx="16.6" cy="23.4" r="1.1" fill="#222"/>
-        <circle cx="17.1" cy="22.9" r="0.4" fill="white"/>
-        <!-- Ear -->
-        <ellipse cx="9" cy="18" rx="4" ry="5" fill="#f9a8c9" transform="rotate(-20,9,18)"/>
-        <ellipse cx="9" cy="18" rx="2.3" ry="3" fill="#e87db0" transform="rotate(-20,9,18)"/>
-        <!-- Coin slot on top -->
-        <rect x="17" y="14" width="10" height="2.5" rx="1.2" fill="#d6629a"/>
-        <!-- Gold coin dropping in -->
-        <circle cx="22" cy="12" r="4.5" fill="#f5a623"/>
-        <circle cx="22" cy="12" r="3" fill="#ffd366"/>
-        <text x="22" y="14" text-anchor="middle" font-size="4" font-weight="900" fill="#8a4a00" font-family="Georgia,serif">$</text>
-        <!-- Legs -->
-        <rect x="11" y="37" width="4" height="5" rx="2" fill="#f9a8c9"/>
-        <rect x="17" y="38" width="4" height="4" rx="2" fill="#f9a8c9"/>
-        <rect x="23" y="38" width="4" height="4" rx="2" fill="#f9a8c9"/>
-        <rect x="29" y="37" width="4" height="5" rx="2" fill="#f9a8c9"/>
-        <!-- Tail -->
-        <path d="M38,27 Q42,23 40,19 Q38,15 41,13" stroke="#f9a8c9" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div>
-      <div class="logo-name">FamilyFinance</div>
-      <div class="logo-tag">Personal Finance Hub</div>
-    </div>
-  </div>
-  <div class="sb-nav">
-    <div class="ni active" onclick="nav('dashboard')"><span class="ni-ic">◎</span> Dashboard</div>
-    <div class="ni" onclick="nav('bills')"><span class="ni-ic">📋</span> Bill Tracker</div>
-    <div class="ni" onclick="nav('budget')"><span class="ni-ic">⚖</span> Budget</div>
-    <div class="ni" onclick="nav('debt')"><span class="ni-ic">💳</span> Debt Eliminator</div>
-    <div class="ni" onclick="nav('credit')"><span class="ni-ic">📈</span> Credit Score</div>
-    <div class="ni" onclick="nav('goals')"><span class="ni-ic">🎯</span> Goals</div>
-    <div class="ni" onclick="nav('settings')"><span class="ni-ic">⚙</span> Settings</div>
-  </div>
-  <div class="sb-foot">
-    <div class="flex aic jcb"><span class="version-badge" id="ver-badge" onclick="openModal('changelog-modal')" title="View changelog" style="cursor:pointer">v1.6.5</span>
-      <div class="theme-toggle"><span class="tl">Theme</span>
-        <select id="theme-sel" onchange="setTheme(this.value)"><option value="dark">Dark</option><option value="light">Light</option></select>
-      </div>
-    </div>
-  </div>
-</nav>
 
 <!-- MAIN -->
 <div id="mn">
   <div id="topbar">
     <div class="flex aic g2x">
-      <button id="hbg" onclick="toggleSidebar()">☰</button>
-      <div class="pg-title" id="pg-title">Dashboard</div>
+      <div class="topbar-logo flex aic" style="gap:8px;cursor:pointer" onclick="nav('dashboard')">
+        <svg viewBox="0 0 44 44" width="30" height="30" style="flex-shrink:0">
+          <ellipse cx="22" cy="27" rx="16" ry="13" fill="#f9a8c9"/>
+          <ellipse cx="22" cy="25" rx="14" ry="11" fill="#fbc8dd"/>
+          <ellipse cx="27" cy="32" rx="6" ry="4.5" fill="#f9a8c9"/>
+          <circle cx="25.5" cy="32.5" r="1.2" fill="#d6629a"/>
+          <circle cx="28.5" cy="32.5" r="1.2" fill="#d6629a"/>
+          <circle cx="16" cy="23" r="2.2" fill="white"/>
+          <circle cx="16.6" cy="23.4" r="1.1" fill="#222"/>
+          <circle cx="17.1" cy="22.9" r="0.4" fill="white"/>
+          <ellipse cx="9" cy="18" rx="4" ry="5" fill="#f9a8c9" transform="rotate(-20,9,18)"/>
+          <ellipse cx="9" cy="18" rx="2.3" ry="3" fill="#e87db0" transform="rotate(-20,9,18)"/>
+          <rect x="17" y="14" width="10" height="2.5" rx="1.2" fill="#d6629a"/>
+          <circle cx="22" cy="12" r="4.5" fill="#f5a623"/>
+          <circle cx="22" cy="12" r="3" fill="#ffd366"/>
+          <text x="22" y="14" text-anchor="middle" font-size="4" font-weight="900" fill="#8a4a00" font-family="Georgia,serif">$</text>
+          <rect x="11" y="37" width="4" height="5" rx="2" fill="#f9a8c9"/>
+          <rect x="17" y="38" width="4" height="4" rx="2" fill="#f9a8c9"/>
+          <rect x="23" y="38" width="4" height="4" rx="2" fill="#f9a8c9"/>
+          <rect x="29" y="37" width="4" height="5" rx="2" fill="#f9a8c9"/>
+          <path d="M38,27 Q42,23 40,19 Q38,15 41,13" stroke="#f9a8c9" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="logo-name" style="font-size:1.1rem">FamilyFinance</div>
+          <div class="logo-tag">Personal Finance Hub</div>
+        </div>
+      </div>
       <div id="gauge-topbar">
         <canvas id="gauge-canvas-mini" width="70" height="40"></canvas>
         <div class="gauge-mini-wrap">
@@ -375,7 +822,15 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
         </div>
       </div>
     </div>
-    <div class="tb-actions" id="tb-actions"><button class="btn btn-s" onclick="openModal('help-modal')" title="Help">❓ Help</button></div>
+    <div class="tb-actions" id="tb-actions">
+      <div id="tb-theme" class="theme-toggle" style="margin-top:0"><span class="tl">Theme</span>
+        <select id="theme-sel" onchange="setTheme(this.value)"><option value="dark">Dark</option><option value="light">Light</option></select>
+      </div>
+      <div id="tb-layout" class="theme-toggle" style="margin-top:0"><span class="tl">Layout</span>
+        <select id="layout-sel" onchange="setLayout(this.value)"><option value="desktop">Desktop</option><option value="mobile">Mobile</option></select>
+      </div>
+      <button class="btn btn-s" onclick="openModal('help-modal')" title="Help">❓ Help</button>
+    </div>
   </div>
 
   <div id="content">
@@ -417,7 +872,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div id="pg-bills" class="section-page">
       <div class="sh">
         <div class="st">Bill Tracker</div>
-        <div class="flex g2x">
+        <div class="flex g2x" style="flex-wrap:wrap">
           <select class="fc" id="bill-year" style="width:auto" onchange="renderBills()"></select>
           <button class="btn btn-p" onclick="openModal('bill-modal')">+ Add Bill</button>
           <button class="btn btn-s" onclick="openModal('csv-import-modal')">⬆ Import CSV</button>
@@ -841,6 +1296,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
 <div class="ov hidden" id="help-modal">
   <div class="modal" style="max-width:640px">
     <div class="mh"><div class="mt">📖 How to Use FamilyFinance</div><button class="mx" onclick="closeModal('help-modal')">✕</button></div>
+    <div class="fs-xs txt-3 mb3" style="padding:0 2px">FamilyFinance <span id="help-ver"></span> — Personal Finance Hub</div>
     <div class="tabs" style="margin-bottom:16px">
       <button class="tab on" onclick="helpTab('dashboard',this)">Dashboard</button>
       <button class="tab" onclick="helpTab('goals',this)">Goals</button>
@@ -935,7 +1391,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div id="help-settings" class="hidden">
       <div class="alert al-info" style="font-size:.82rem;line-height:1.7">
         <strong>Settings — Profile, Goals & Data Management</strong><br><br>
-        <strong>Profile:</strong> Enter your name and birth date. Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br>
+        <strong>Profile:</strong> Enter your name and birth date. Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br><strong>Layout:</strong> Switch between Desktop (bottom nav with full labels, multi-column layout) and Mobile (bottom nav with short labels, single column, larger touch targets). The app auto-detects your device on first visit. Override manually using the Layout selector in the topbar next to the Help button.<br><br>
         <strong>Financial Readiness Gauge:</strong> The gauge scores your financial health using your savings balance, debt load, credit score, and budget surplus. Add savings accounts via the Goals section to improve the savings component.<br><br>
         <strong>Data Management:</strong><br>
         • <strong>Export All Data (JSON)</strong> — Saves a complete backup of everything in the app. Do this regularly!<br>
@@ -991,6 +1447,89 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div class="mh">
       <div class="mt">📋 FamilyFinance — Version History</div>
       <button class="mx" onclick="closeModal('changelog-modal')">✕</button>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.7 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed startup crash — ver-badge, pg-title, and .ni elements were removed with the sidebar but still referenced in init() and nav(); all references either removed or safely guarded</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.6 <span class="cl-tag cl-tag-major">Major</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Sidebar navigation removed entirely — bottom nav bar is now the sole navigation method in both desktop and mobile modes</li>
+        <li>Pig logo, FamilyFinance title, and Personal Finance Hub subtitle moved to the topbar left side; clicking the logo returns to Dashboard</li>
+        <li>Hamburger button removed — no longer needed</li>
+        <li>Version number moved into the Help modal below the title ("How to Use FamilyFinance")</li>
+        <li>Theme and Layout selectors remain in the topbar; on mobile the logo subtitle hides to save space</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.5 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Bill table: Category, Type, and AutoPay columns hidden in mobile mode — leaving Bill, Freq, Due, Amount, Status, and Actions, which fit cleanly without horizontal scroll</li>
+        <li>Theme and Layout selectors moved to the sidebar (hamburger menu) in mobile mode — topbar shows only the Help button, eliminating the overflow</li>
+        <li>Theme and Layout selectors remain in the topbar in desktop mode as before</li>
+        <li>Auto-detect improved — fires on every page load using user agent string plus touch capability check, not just on first visit. iPhone and Android devices always default to Mobile unless manually overridden.</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.4 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Comprehensive mobile layout pass — all seven sections reviewed and fixed</li>
+        <li>Section headers stack title above buttons in mobile; buttons wrap into a 2-up grid</li>
+        <li>Bill Tracker: button row now wraps correctly; bill table scrolls horizontally with touch; month tabs more compact</li>
+        <li>Budget, Debt, Credit: tab bars scroll horizontally without wrapping</li>
+        <li>All tables get proper touch scrolling with minimum column widths</li>
+        <li>Settings: expands to full width on mobile</li>
+        <li>Forms: larger fields and labels for touch input</li>
+        <li>Modals: slide up from bottom, full-width on mobile</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.3 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Bottom navigation bar now always visible in both desktop and mobile modes — replaces the sidebar as the primary navigation</li>
+        <li>Desktop bottom nav shows icon + full label side-by-side (Dashboard, Bill Tracker, Debt Eliminator, Credit Score, Goals, Settings)</li>
+        <li>Mobile bottom nav shows icon stacked above short label (Home, Bills, Budget, Debt, Credit, Goals, Settings)</li>
+        <li>Sidebar is now hamburger-only in both modes — consistent behaviour across layouts</li>
+        <li>Settings label replaces "More" on the mobile nav bar</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.2 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Theme and Layout selectors moved permanently into the topbar, next to the Help button — visible in all modes, no sidebar dependency</li>
+        <li>Sidebar footer now shows only the version badge</li>
+        <li>Removed duplicate mobile-only controls row — no more double Layout toggle in mobile mode</li>
+        <li>Topbar wraps gracefully on narrow mobile screens</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.1 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed desktop sidebar footer — version badge, Theme, and Layout selectors no longer overlap; now stacked cleanly in two rows</li>
+        <li>Fixed mobile mode — version badge, Theme, and Layout selectors now appear in a dedicated row inside the topbar, always visible regardless of sidebar state</li>
+        <li>Both sets of selectors stay in sync when either is changed</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.0 <span class="cl-tag cl-tag-major">Major</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Mobile layout mode added — toggle between Desktop and Mobile in the sidebar footer (Layout selector)</li>
+        <li>Mobile mode collapses sidebar to hamburger-only, stacks all columns to single column, increases font sizes and touch target sizes, and slides modals up from the bottom of the screen</li>
+        <li>Bottom navigation bar appears in mobile mode with one-thumb access to all seven sections</li>
+        <li>Layout preference persisted in localStorage and auto-detected on first visit (phones default to Mobile, larger screens default to Desktop)</li>
+        <li>Layout preference included in JSON backup and restored on import</li>
+      </ul>
     </div>
 
     <div class="cl-entry">
@@ -1387,7 +1926,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.6.5';
+const APP_VERSION = '1.7.7';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -1584,16 +2123,16 @@ const PAGE_TITLES = {
 
 function nav(page) {
   document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  // .ni elements removed with sidebar
   $$('pg-' + page).classList.add('active');
-  document.querySelectorAll('.ni').forEach(n => { if(n.textContent.trim().toLowerCase().includes(page) || n.getAttribute('onclick')?.includes(page)) n.classList.add('active'); });
-  $$('pg-title').textContent = PAGE_TITLES[page] || page;
-  $$('tb-actions').innerHTML = '<button class="btn btn-s" onclick="openModal(\'help-modal\')" title="Help">❓ Help</button>';
+  // .ni elements removed with sidebar
+  // pg-title removed — logo always shows in topbar
+  // tb-actions contains persistent controls (theme, layout, help) — leave them in place
   // Show mini gauge only on dashboard
   var gt = $$('gauge-topbar');
   if (gt) gt.classList.toggle('visible', page === 'dashboard');
-  closeSidebar();
   window._currentPage = page;
+  syncMobileNav(page);
   renderPage(page);
 }
 
@@ -1609,11 +2148,7 @@ function renderPage(page) {
   }
 }
 
-function toggleSidebar() {
-  const sb = $$('sb');
-  sb.classList.toggle('open');
-  $$('sb-ov').style.display = sb.classList.contains('open') ? 'block' : 'none';
-}
+
 
 function helpTab(tab, el) {
   ['dashboard','goals','bills','budget','debt','credit','settings'].forEach(t => {
@@ -1627,10 +2162,6 @@ function helpTab(tab, el) {
   if (el) el.classList.add('on');
 }
 
-function closeSidebar() {
-  $$('sb').classList.remove('open');
-  $$('sb-ov').style.display = 'none';
-}
 
 // ── MODAL HELPERS ──────────────────────────────────────────
 function openModal(id) { $$(id).classList.remove('hidden'); }
@@ -1650,10 +2181,10 @@ function renderDashboard() {
   var _name = (D.profile && D.profile.name && D.profile.name.trim() && D.profile.name !== 'Your Name')
     ? D.profile.name.trim() : '';
   if (_name) {
-    $$('pg-title').innerHTML =
+    if ($$('pg-title')) $$('pg-title').innerHTML =
       '<span style="color:var(--txt2);font-weight:400">' + _name + '’s </span>Dashboard';
   } else {
-    $$('pg-title').textContent = 'Dashboard';
+    if ($$('pg-title')) $$('pg-title').textContent = 'Dashboard';
   }
   var fns = [renderCountdown, renderGauge, renderDashStats, renderDashBills, renderMilestonesList];
   fns.forEach(function(fn) {
@@ -2028,12 +2559,12 @@ function renderBillTable() {
         : '<button class="btn btn-s btn-xs" data-isid="' + inc.id + '" onclick="openAddSourceModal(this.dataset.isid)">Edit</button>';
       return '<tr style="background:rgba(82,183,136,.05)">' +
         '<td><strong class="txt-ok">' + incIcon + ' ' + inc.name + '</strong>' + (inc.notes ? '<div class="fs-xs txt-3">' + inc.notes + '</div>' : '') + '</td>' +
-        '<td><span class="bdg bdg-ok">Income</span></td>' +
+        '<td class="mob-hide"><span class="bdg bdg-ok">Income</span></td>' +
         '<td><span class="bdg ' + freqBdg + '" style="font-size:.65rem">' + inc.frequency + '</span></td>' +
-        '<td><span class="bdg bdg-ok">deposit</span></td>' +
+        '<td class="mob-hide"><span class="bdg bdg-ok">deposit</span></td>' +
         '<td class="tc">' + item.sortDay + '</td>' +
         '<td class="td-num fw7 txt-ok">' + amtStr + '</td>' +
-        '<td class="tc"><span class="txt-ok">✓</span></td>' +
+        '<td class="mob-hide tc"><span class="txt-ok">✓</span></td>' +
         '<td><span class="bdg bdg-ok">' + inc.date + '</span></td>' +
         '<td>' + editBtn + '</td>' +
       '</tr>';
@@ -2052,12 +2583,12 @@ function renderBillTable() {
     var statusCls = isFullyPaid ? 'bdg-ok' : pc > 0 ? 'bdg-warn' : 'bdg-err';
     return `<tr>
       <td><strong>${b.name}</strong>${b.notes?`<div class="fs-xs txt-3">${b.notes}</div>`:''}</td>
-      <td><span class="bdg bdg-neu">${b.category}</span></td>
+      <td class="mob-hide"><span class="bdg bdg-neu">${b.category}</span></td>
       <td><span class="bdg ${freq==='Monthly'?'bdg-info':'bdg-warn'}" style="font-size:.65rem">${freq}</span></td>
-      <td><span class="bdg ${b.type==='fixed'?'bdg-info':'bdg-warn'}">${b.type}</span></td>
+      <td class="mob-hide"><span class="bdg ${b.type==='fixed'?'bdg-info':'bdg-warn'}">${b.type}</span></td>
       <td class="tc">${dueTxt}</td>
       <td class="td-num fw7">${amtTxt}</td>
-      <td class="tc">${b.autoPay?'<span class="txt-ok">✓</span>':'<span class="txt-3">—</span>'}</td>
+      <td class="mob-hide tc">${b.autoPay?'<span class="txt-ok">✓</span>':'<span class="txt-3">—</span>'}</td>
       <td><span class="bdg ${statusCls}" style="cursor:pointer" onclick="toggleBillPaid('${b.id}')">${statusTxt}</span></td>
       <td><button class="btn btn-s btn-xs" onclick="editBill('${b.id}')">Edit</button> <button class="btn btn-err btn-xs" onclick="deleteBill('${b.id}')">✕</button></td>
     </tr>`;
@@ -2067,7 +2598,7 @@ function renderBillTable() {
     <div class="tw">
     <table>
       <thead><tr>
-        <th>Bill</th><th>Category</th><th>Freq</th><th>Type</th><th>Due</th><th>Eff. Amount</th><th>AutoPay</th><th>Status</th><th>Actions</th>
+        <th>Bill</th><th class="mob-hide">Category</th><th>Freq</th><th class="mob-hide">Type</th><th>Due</th><th>Eff. Amount</th><th class="mob-hide">AutoPay</th><th>Status</th><th>Actions</th>
       </tr></thead>
       <tbody>
       ${rowsHTML}
@@ -4656,6 +5187,35 @@ function clearSampleGoals() {
 }
 
 
+// ── LAYOUT MODE (desktop / mobile) ──────────────────────────
+function setLayout(mode) {
+  if (mode === 'mobile') {
+    document.body.classList.add('mobile');
+  } else {
+    document.body.classList.remove('mobile');
+  }
+  localStorage.setItem('familyfinance_layout', mode);
+  if ($$('layout-sel')) $$('layout-sel').value = mode;
+  if ($$('layout-sel-sb')) $$('layout-sel-sb').value = mode;
+  // Re-render current page so gauge canvas redraws at correct size
+  if (window._appLoaded && window._currentPage) renderPage(window._currentPage);
+}
+
+function mobileNav(page, el) {
+  // Update bottom nav active state
+  document.querySelectorAll('.mnav-item').forEach(function(b) { b.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  nav(page);
+}
+
+function syncMobileNav(page) {
+  // Keep bottom nav in sync when desktop sidebar is used
+  document.querySelectorAll('.mnav-item').forEach(function(b) { b.classList.remove('active'); });
+  var btn = $$('mnav-' + page);
+  if (btn) btn.classList.add('active');
+}
+
+
 // ── SETTINGS ──────────────────────────────────────────────
 function loadSettings() {
   const p = D.profile;
@@ -4686,7 +5246,8 @@ function exportData() {
   exportObj._meta = {
     version: APP_VERSION,
     exportDate: todayStr(),
-    theme: localStorage.getItem('familyfinance_theme') || 'dark'
+    theme: localStorage.getItem('familyfinance_theme') || 'dark',
+    layout: localStorage.getItem('familyfinance_layout') || 'desktop'
   };
   const blob = new Blob([JSON.stringify(exportObj, null, 2)], {type:'application/json'});
   const a = document.createElement('a');
@@ -4732,6 +5293,9 @@ function handleImport(e) {
         // Restore theme if saved in backup
         if (imported._meta && imported._meta.theme) {
           setTheme(imported._meta.theme);
+        }
+        if (imported._meta && imported._meta.layout) {
+          setLayout(imported._meta.layout);
         }
         // Remove meta before saving as app data
         delete imported._meta;
@@ -5105,6 +5669,7 @@ function setTheme(mode) {
   }
   localStorage.setItem('familyfinance_theme', mode);
   if ($$('theme-sel')) $$('theme-sel').value = mode;
+  if ($$('theme-sel-sb')) $$('theme-sel-sb').value = mode;
   // Re-render current page so canvas/charts pick up new colors
   if (window._appLoaded && window._currentPage) renderPage(window._currentPage);
   // Ensure class persists after any re-render
@@ -5119,8 +5684,17 @@ function init() {
   // Apply theme class immediately (before render, to avoid flash)
   var savedTheme = localStorage.getItem('familyfinance_theme') || 'dark';
   if (savedTheme === 'light') document.body.classList.add('light');
+  // Auto-detect device type on every load — override with saved preference
+  var isMobileDevice = (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    (window.innerWidth < 768 && navigator.maxTouchPoints > 0)
+  );
+  var savedLayout = localStorage.getItem('familyfinance_layout');
+  // If user hasn't manually set a preference, always follow device detection
+  if (!savedLayout) savedLayout = isMobileDevice ? 'mobile' : 'desktop';
+  if (savedLayout === 'mobile') document.body.classList.add('mobile');
 
-  $$('ver-badge').textContent = 'v' + APP_VERSION;
+  // ver-badge removed — version shown in Help modal only
   // Set today for date inputs
   $$('cr-date').value = todayStr();
   // Init bill year
@@ -5161,8 +5735,10 @@ function init() {
   });
   obs2.observe(expCsvModal, { attributes: true, attributeFilter: ['class'] });
   renderDashboard();
-  // Sync theme dropdown and re-apply class after render
+  // Sync theme and layout dropdowns, re-apply classes after render
   setTheme(savedTheme);
+  setLayout(savedLayout);
+  if ($$('help-ver')) $$('help-ver').textContent = 'v' + APP_VERSION;
   window._appLoaded = true;
 }
 
@@ -5240,5 +5816,45 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<!-- MOBILE BOTTOM NAV -->
+<div id="mobile-nav">
+  <button class="mnav-item active" onclick="mobileNav('dashboard',this)" id="mnav-dashboard">
+    <span class="mni">◎</span>
+    <span class="mnav-short">Home</span>
+    <span class="mnav-long">Dashboard</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('bills',this)" id="mnav-bills">
+    <span class="mni">📋</span>
+    <span class="mnav-short">Bills</span>
+    <span class="mnav-long">Bill Tracker</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('budget',this)" id="mnav-budget">
+    <span class="mni">⚖</span>
+    <span class="mnav-short">Budget</span>
+    <span class="mnav-long">Budget</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('debt',this)" id="mnav-debt">
+    <span class="mni">💳</span>
+    <span class="mnav-short">Debt</span>
+    <span class="mnav-long">Debt Eliminator</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('credit',this)" id="mnav-credit">
+    <span class="mni">📈</span>
+    <span class="mnav-short">Credit</span>
+    <span class="mnav-long">Credit Score</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('goals',this)" id="mnav-goals">
+    <span class="mni">🎯</span>
+    <span class="mnav-short">Goals</span>
+    <span class="mnav-long">Goals</span>
+  </button>
+  <button class="mnav-item" onclick="mobileNav('settings',this)" id="mnav-settings">
+    <span class="mni">⚙</span>
+    <span class="mnav-short">Settings</span>
+    <span class="mnav-long">Settings</span>
+  </button>
+</div>
+
+
 </body>
 </html>
