@@ -327,7 +327,7 @@ body.mobile .sh > button.btn { width: 100%; justify-content: center; }
 body.mobile .sh select.fc { width: 100% !important; }
 
 /* Cards */
-body.mobile .card { padding: 14px; max-width: 100%; overflow-x: clip; }
+body.mobile .card { padding: 14px; max-width: 100%; }
 body.mobile .card-title { font-size: .92rem; }
 body.mobile .sc-val { font-size: 1.35rem; }
 
@@ -356,15 +356,6 @@ body.mobile .tw {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%; max-width: 100%;
-  position: relative;
-  /* Subtle right-edge shadow as scroll indicator */
-  background:
-    linear-gradient(to right, var(--bg3) 0%, transparent 20px) left no-repeat,
-    linear-gradient(to left, var(--bg3) 0%, transparent 20px) right no-repeat,
-    linear-gradient(to right, rgba(0,0,0,.4) 0%, transparent 16px) left no-repeat,
-    linear-gradient(to left, rgba(0,0,0,.3) 0%, transparent 16px) right no-repeat;
-  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-  background-attachment: local, local, scroll, scroll;
 }
 body.mobile .tw table { min-width: 300px; font-size: .78rem; }
 body.mobile .tw th,
@@ -374,7 +365,7 @@ body.mobile .mob-hide { display: none !important; }
 /* Month tabs — scroll with fade hint */
 body.mobile .mtabs {
   gap: 3px; overflow-x: auto; -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap; max-width: 100%;
+  flex-wrap: nowrap !important; max-width: 100%;
   background:
     linear-gradient(to right, var(--bg) 0%, transparent 20px) left no-repeat,
     linear-gradient(to left, var(--bg) 0%, transparent 20px) right no-repeat,
@@ -1176,6 +1167,15 @@ body.mobile #content { padding-bottom: 90px; }
     </div>
 
     <div class="cl-entry">
+      <div class="cl-ver">v1.8.2 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed Budget Income Sources and Expense Budget horizontal scroll — overflow-x:clip on .card was blocking scroll containers inside cards (same root cause as before, one level deeper); removed from .card entirely</li>
+        <li>Fixed month tabs cut off after October — flex-wrap:nowrap was being overridden by the base .mtabs{flex-wrap:wrap} rule; added !important to enforce the mobile override</li>
+        <li>Removed false scroll indicator (gray edge shadow) from bill tables — the indicator was showing even when no scroll was needed (e.g. By Category). Scroll indicators kept only on tab bars and month tabs where the scrollbar is hidden</li>
+      </ul>
+    </div>
+
+    <div class="cl-entry">
       <div class="cl-ver">v1.8.1 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
       <ul class="cl-items">
         <li>Fixed Budget Monthly and Medium Term overflow — root cause was overflow-x:hidden on #content and .section-page blocking child scroll containers; replaced with overflow-x:clip which clips visually without preventing descendant scrolling</li>
@@ -1693,7 +1693,7 @@ body.mobile #content { padding-bottom: 90px; }
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.8.1';
+const APP_VERSION = '1.8.2';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
