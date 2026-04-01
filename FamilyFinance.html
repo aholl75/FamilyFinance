@@ -67,342 +67,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--txt);min-height:100v
 .btn-sm{padding:4px 9px;font-size:.72rem}
 .btn-xs{padding:3px 7px;font-size:.68rem}
 
-/* === FORMS === */
-.fg{margin-bottom:12px}
-.fl{display:block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--txt2);margin-bottom:4px}
-.fc{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:var(--rs);padding:8px 11px;color:var(--txt);font-family:var(--fb);font-size:.85rem;transition:border-color .2s;outline:none}
-.fc:focus{border-color:var(--gold)}
-.fc option{background:var(--bg3)}
-.fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-textarea.fc{resize:vertical;min-height:70px}
-input[type=checkbox].fc{width:auto;cursor:pointer}
-.chk-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.chk-row label{font-size:.83rem;color:var(--txt2);cursor:pointer}
-
-/* === MODALS === */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);width:100%;max-width:530px;max-height:92vh;overflow-y:auto;padding:22px;animation:mIn .22s ease}
-@keyframes mIn{from{opacity:0;transform:translateY(-16px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.spinner{width:20px;height:20px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
-.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.mt{font-family:var(--ff);font-size:1.3rem;font-weight:600}
-.mx{background:none;border:none;color:var(--txt2);font-size:1.1rem;cursor:pointer;padding:4px;transition:color .2s}.mx:hover{color:var(--txt)}
-.mf{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
-
-/* === TABLES === */
-.tw{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.83rem}
-th{text-align:left;padding:7px 11px;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--txt3);border-bottom:1px solid var(--border)}
-td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--txt2)}
-tr:hover td{background:rgba(255,255,255,.02);color:var(--txt)}
-tr:last-child td{border-bottom:none}
-.td-num{text-align:right;font-variant-numeric:tabular-nums}
-
-/* === TABS === */
-.tabs{display:flex;gap:3px;background:var(--bg);padding:3px;border-radius:var(--rs);margin-bottom:18px;overflow-x:auto;flex-shrink:0}
-.tab{padding:6px 13px;border-radius:5px;font-size:.78rem;font-weight:500;color:var(--txt3);cursor:pointer;transition:all .18s;white-space:nowrap;border:none;background:none}
-.tab:hover{color:var(--txt);background:var(--bg3)}
-.tab.on{background:var(--bg3);color:var(--gold);border:1px solid var(--border)}
-
-/* === PROGRESS === */
-.pb{height:5px;background:var(--bg);border-radius:999px;overflow:hidden;margin-top:6px}
-.pf{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--amber),var(--coral));transition:width .5s ease}
-.pf.g{background:linear-gradient(90deg,#52b788,#40916c)}
-.pf.b{background:linear-gradient(90deg,var(--sky),#2171b5)}
-.pf.l{background:linear-gradient(90deg,var(--lavender),#5a4a9e)}
-
-/* === BADGES === */
-.bdg{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:.67rem;font-weight:600}
-.bdg-ok{background:rgba(82,183,136,.14);color:var(--ok)}
-.bdg-warn{background:rgba(245,166,35,.14);color:var(--warn)}
-.bdg-err{background:rgba(224,85,69,.14);color:var(--err)}
-.bdg-info{background:rgba(61,139,212,.14);color:var(--info)}
-.bdg-neu{background:var(--bg4);color:var(--txt2)}
-
-/* === COUNTDOWN === */
-.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
-.cd-u{text-align:center;background:var(--bg);border-radius:var(--rs);padding:10px 6px;border:1px solid var(--border)}
-.cd-n{font-family:var(--ff);font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
-.cd-l{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-top:3px}
-
-/* === GAUGE === */
-.gauge-box{display:flex;flex-direction:column;align-items:center;padding:8px 0}
-.gauge-pct{font-family:var(--ff);font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
-.gauge-lbl{font-size:.72rem;color:var(--txt2);margin-top:4px;text-align:center}
-
-/* === MONTH TABS === */
-.mtabs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:14px}
-.mtab{padding:4px 10px;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--txt3);transition:all .18s}
-.mtab:hover{border-color:var(--gold);color:var(--gold)}
-.mtab.on{background:rgba(245,166,35,.13);border-color:var(--gold);color:var(--gold)}
-
-/* === SCORE CIRCLES === */
-.sc-ring{display:flex;flex-direction:column;align-items:center;justify-content:center;width:90px;height:90px;border-radius:50%;border:3px solid;flex-shrink:0}
-.sc-ring.exc{border-color:var(--ok)}.sc-ring.gd{border-color:var(--sky)}.sc-ring.fr{border-color:var(--gold)}.sc-ring.pr{border-color:var(--err)}
-
-/* === ALERTS === */
-.alert{padding:10px 14px;border-radius:var(--rs);font-size:.82rem;margin-bottom:10px;border-left:3px solid}
-.al-info{background:rgba(61,139,212,.09);border-color:var(--info)}.al-warn{background:rgba(245,166,35,.09);border-color:var(--warn)}.al-ok{background:rgba(82,183,136,.09);border-color:var(--ok)}.al-err{background:rgba(224,85,69,.09);border-color:var(--err)}
-
-/* === DIVIDERS / UTILS === */
-hr{border:none;border-top:1px solid var(--border);margin:14px 0}
-.flex{display:flex}.fc-col{flex-direction:column}.aic{align-items:center}.jcb{justify-content:space-between}.jce{justify-content:flex-end}.g2x{gap:8px}.g3x{gap:12px}
-.mt1{margin-top:4px}.mt2{margin-top:8px}.mt3{margin-top:12px}.mt4{margin-top:16px}.mb2{margin-bottom:8px}.mb3{margin-bottom:12px}.mb4{margin-bottom:16px}
-.tr{text-align:right}.tc{text-align:center}
-.txt-ok{color:var(--ok)}.txt-err{color:var(--err)}.txt-warn{color:var(--gold)}.txt-2{color:var(--txt2)}.txt-3{color:var(--txt3)}
-.ff{font-family:var(--ff)}.fw7{font-weight:700}.fs-sm{font-size:.8rem}.fs-xs{font-size:.72rem}
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.st{font-family:var(--ff);font-size:1.15rem;font-weight:600}
-.hidden{display:none!important}
-.empty{text-align:center;padding:36px 20px;color:var(--txt3)}
-.empty i{font-size:2rem;margin-bottom:8px;display:block}
-.section-page{display:none}.section-page.active{display:block}
-.star{color:var(--gold)}
-
-/* === HAMBURGER === */
-
-/* === SIDEBAR OVERLAY === */
-
-/* === RESPONSIVE === */
-/* Sidebar always hidden — opened only via hamburger */
-#sb.open{transform:translateX(0)}
-#hbg{display:block}
-@media(max-width:600px){
-  #content{padding:12px 12px 90px}
-  .g2,.g3,.g4{grid-template-columns:1fr}
-  .fr2,.fr3{grid-template-columns:1fr}
-  .cd-grid{grid-template-columns:repeat(2,1fr)}
-  .sc-val{font-size:1.4rem}
-  .pg-title{font-size:1.2rem}
-  .ga{grid-template-columns:1fr 1fr}
-}
-@media(max-width:420px){.ga{grid-template-columns:1fr}}
-
-/* === CITY CARDS === */
-.city-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px;position:relative}
-.city-score{position:absolute;top:12px;right:14px;font-family:var(--ff);font-size:1.6rem;font-weight:700}
-.city-score.hi{color:var(--ok)}.city-score.md{color:var(--gold)}.city-score.lo{color:var(--err)}
-.city-name{font-family:var(--ff);font-size:1.1rem;font-weight:600;margin-bottom:2px}
-.city-state{font-size:.72rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em}
-.city-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
-.city-stat{background:var(--bg);border-radius:var(--rs);padding:7px 10px}
-.city-stat-lbl{font-size:.63rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.06em}
-.city-stat-val{font-size:.88rem;font-weight:600;color:var(--txt);margin-top:1px}
-
-/* === DEBT CARD === */
-.debt-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;transition:border-color .18s}
-.debt-card:hover{border-color:var(--border2)}
-.debt-name{font-weight:600;font-size:.9rem}
-.debt-meta{display:flex;align-items:center;gap:10px;margin-top:5px;flex-wrap:wrap}
-
-/* === HEALTH CARD === */
-.hcard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px}
-
-/* === CHANGELOG === */
-.cl-entry{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.cl-entry:last-child{border-bottom:none;margin-bottom:0}
-.cl-ver{font-family:var(--ff);font-size:1.1rem;font-weight:700;color:var(--gold)}
-.cl-date{font-size:.7rem;color:var(--txt3);margin-left:8px;font-weight:400;font-family:var(--fb)}
-.cl-tag{display:inline-flex;align-items:center;padding:1px 6px;border-radius:4px;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-left:6px}
-.cl-tag-major{background:rgba(224,85,69,.15);color:var(--coral)}
-.cl-tag-bundle{background:rgba(61,139,212,.15);color:var(--sky)}
-.cl-tag-fix{background:rgba(82,183,136,.15);color:var(--ok)}
-.cl-items{margin-top:8px;list-style:none;padding:0}
-.cl-items li{font-size:.8rem;color:var(--txt2);padding:3px 0 3px 14px;position:relative;line-height:1.5}
-.cl-items li::before{content:"·";position:absolute;left:2px;color:var(--txt3)}
-
-/* Topbar logo */
-.topbar-logo { text-decoration: none; }
-.topbar-logo:hover { opacity: .85; }
-
-/* === MINI GAUGE (topbar) === */
-#gauge-topbar{display:none;align-items:center;gap:6px;padding:0 10px;border-left:1px solid var(--border);margin-left:8px}
-#gauge-topbar.visible{display:flex}
-.gauge-mini-wrap{display:flex;flex-direction:column;align-items:center;line-height:1}
-.gauge-mini-pct{font-family:var(--ff);font-size:.95rem;font-weight:700;color:var(--gold)}
-.gauge-mini-lbl{font-size:.58rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;white-space:nowrap}
-
-/* ============================================================
-   MOBILE LAYOUT MODE  (body.mobile)
-   ============================================================ */
-
-/* Base */
-body.mobile { font-size: 16px; }
-body.mobile #content { padding: 12px 14px 90px; }
-
-/* Sidebar: hamburger-only */
-
-/* Topbar */
-body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px 10px; }
-body.mobile .tb-actions { flex-wrap: wrap; gap: 6px; }
-body.mobile .theme-toggle { margin-top: 0; }
-body.mobile .pg-title { font-size: 1.1rem; }
-
-/* Section headers: stack title above buttons */
-body.mobile .sh { flex-direction: column; align-items: flex-start; gap: 8px; }
-body.mobile .sh .st { font-size: 1.05rem; }
-body.mobile .sh > .flex,
-body.mobile .sh > button { width: 100%; }
-body.mobile .sh .flex { flex-wrap: wrap; gap: 6px; }
-body.mobile .sh .btn,
-body.mobile .sh > button.btn {
-  flex: 1 1 calc(50% - 4px);
-  min-width: 120px;
-  justify-content: center;
-  text-align: center;
-  padding: 9px 8px;
-  font-size: .82rem;
-}
-body.mobile .sh select.fc { width: 100% !important; }
-
-/* Cards */
-body.mobile .card-title { font-size: .95rem; }
-body.mobile .sc-val { font-size: 1.4rem; }
-
-/* All 2/3/4-col grids → single column */
-body.mobile .g2,
-body.mobile .g3,
-body.mobile .g4,
-body.mobile .fr2,
-body.mobile .fr3 { grid-template-columns: 1fr !important; gap: 12px; }
-
-/* Stat cards stay 2×2 */
-body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
-
-/* Auto-fit grids → 2-col minimum */
-body.mobile .ga { grid-template-columns: 1fr 1fr !important; }
-
-/* Countdown tiles 2×2 */
-body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
-
-/* Dashboard merged card: stack vertically */
-body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
-body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { display: none; }
-body.mobile #pg-dashboard .card > .flex > div:first-child {
-  padding-right: 0 !important;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-}
-body.mobile #pg-dashboard .card > .flex > div:last-child { padding-left: 0 !important; }
-
-/* Tables: horizontal scroll with touch */
-body.mobile .tw {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 -14px;
-  padding: 0 14px;
-  padding-bottom: 4px;
-}
-body.mobile .tw table { min-width: 560px; font-size: .8rem; }
-body.mobile .tw th,
-body.mobile .tw td { padding: 8px 6px; white-space: nowrap; }
-
-/* Month tabs: compact, wrap */
-body.mobile .mtabs { gap: 4px; }
-body.mobile .mtab { padding: 5px 8px; font-size: .68rem; }
-
-/* Tab bars: horizontal scroll */
-body.mobile .tabs {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap;
-  padding-bottom: 2px;
-}
-body.mobile .tab { white-space: nowrap; padding: 8px 12px; font-size: .8rem; }
-
-/* Forms */
-body.mobile .fc { padding: 10px 12px; font-size: .95rem; min-height: 42px; }
-body.mobile .fl { font-size: .78rem; }
-body.mobile .fg { margin-bottom: 14px; }
-
-/* Buttons */
-body.mobile .btn { min-height: 40px; }
-body.mobile .btn-sm { padding: 8px 12px; font-size: .82rem; }
-body.mobile .btn-xs { padding: 6px 10px; font-size: .78rem; }
-
-/* Settings: full width */
-body.mobile [style*="max-width:560px"] { max-width: 100% !important; }
-
-/* Hide non-essential bill table columns on mobile */
-body.mobile .mob-hide { display: none !important; }
-body.mobile .tw table { min-width: 340px; }
-
-/* Modals: slide up from bottom */
-body.mobile .ov { align-items: flex-end; padding: 0; }
-body.mobile .modal {
-  max-width: 100% !important;
-  max-height: 92vh;
-  border-radius: var(--r) var(--r) 0 0;
-}
-
-/* Light mode overrides for mobile */
-body.light.mobile #mobile-nav { background: var(--bg2); border-top-color: var(--border); }=1.0">
-<title>FamilyFinance — Personal Finance</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<style>
-:root {
-  --bg: #0b0f1a; --bg2: #111827; --bg3: #1c2333; --bg4: #232d42;
-  --border: #252f45; --border2: #2e3d5a;
-  --gold: #f5a623; --amber: #e8883a; --coral: #e05545;
-  --sky: #3d8bd4; --pine: #2d7a5f; --lavender: #7b68b2;
-  --txt: #edf2f7; --txt2: #8a96aa; --txt3: #4a5568;
-  --ok: #52b788; --warn: #f5a623; --err: #e05545; --info: #3d8bd4;
-  --r: 11px; --rs: 7px;
-  --ff: 'Cormorant Garamond', Georgia, serif;
-  --fb: 'DM Sans', system-ui, sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--bg);color:var(--txt);min-height:100vh;display:flex;overflow-x:hidden}
-
-/* === SIDEBAR === */
-.logo-wrap{flex-shrink:0}
-.ni{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;transition:all .18s;font-size:.85rem;font-weight:500;color:var(--txt2);border-left:3px solid transparent;user-select:none}
-.ni:hover{background:rgba(245,166,35,.07);color:var(--txt)}
-.ni.active{color:var(--gold);border-left-color:var(--gold);background:rgba(245,166,35,.09)}
-.ni-ic{font-size:.95rem;width:18px;text-align:center}
-.version-badge{display:inline-block;background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.25);border-radius:4px;padding:2px 7px;font-size:.68rem;font-weight:600;font-family:var(--fb);letter-spacing:.04em}
-
-/* === MAIN === */
-#mn{margin-left:0;flex:1;min-height:100vh;display:flex;flex-direction:column}
-#topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.pg-title{font-family:var(--ff);font-size:1.4rem;font-weight:600}
-.tb-actions{display:flex;align-items:center;gap:8px}
-#content{flex:1;padding:24px 28px;width:100%;max-width:1440px}
-
-/* === CARDS === */
-.card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;transition:border-color .2s}
-.card:hover{border-color:var(--border2)}
-.card-title{font-family:var(--ff);font-size:1.05rem;font-weight:600;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.card-sub{font-size:.72rem;color:var(--txt2);font-weight:400;margin-left:auto}
-
-/* === GRID === */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ga{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-
-/* === STAT CARDS === */
-.sc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
-.sc-lbl{font-size:.67rem;text-transform:uppercase;letter-spacing:.09em;color:var(--txt3);font-weight:600;margin-bottom:5px}
-.sc-val{font-family:var(--ff);font-size:1.75rem;font-weight:700;color:var(--txt);line-height:1}
-.sc-sub{font-size:.72rem;margin-top:4px;color:var(--txt2)}
-.sc-sub.up{color:var(--ok)}.sc-sub.dn{color:var(--err)}
-
-/* === BUTTONS === */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--rs);font-family:var(--fb);font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none}
-.btn-p{background:linear-gradient(135deg,var(--amber),var(--coral));color:#fff;border:none}.btn-p:hover{opacity:.88;transform:translateY(-1px)}
-.btn-s{background:transparent;border-color:var(--border2);color:var(--txt2)}.btn-s:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,166,35,.06)}
-.btn-ok{background:rgba(82,183,136,.15);border-color:var(--ok);color:var(--ok)}.btn-ok:hover{background:rgba(82,183,136,.25)}
-.btn-err{background:transparent;border-color:var(--err);color:var(--err)}.btn-err:hover{background:rgba(224,85,69,.1)}
-.btn-sm{padding:4px 9px;font-size:.72rem}
-.btn-xs{padding:3px 7px;font-size:.68rem}
+input[type="date"].fc { text-align: left; }
 
 /* === FORMS === */
 .fg{margin-bottom:12px}
@@ -561,158 +226,6 @@ hr{border:none;border-top:1px solid var(--border);margin:14px 0}
 .gauge-mini-pct{font-family:var(--ff);font-size:.95rem;font-weight:700;color:var(--gold)}
 .gauge-mini-lbl{font-size:.58rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;white-space:nowrap}
 
-/* ============================================================
-   MOBILE LAYOUT MODE  (body.mobile)
-   Activated by Layout toggle or auto-detected on small screens
-   ============================================================ */
-/* Base font larger for readability */
-body.mobile { font-size: 16px; }
-
-/* Sidebar opens via hamburger in both modes */
-body.mobile #content { padding: 12px 14px 90px; }  /* bottom padding for nav bar */
-
-/* Single column everything */
-body.mobile .g2,
-body.mobile .g3,
-body.mobile .g4,
-body.mobile .ga,
-body.mobile .fr2,
-body.mobile .fr3 { grid-template-columns: 1fr !important; }
-
-/* Stat cards: 2-up grid instead of 1 */
-body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
-
-/* Countdown grid: 2x2 */
-body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
-
-/* Bigger tap targets for buttons */
-body.mobile .btn { padding: 10px 16px; font-size: .88rem; min-height: 40px; }
-body.mobile .btn-sm { padding: 8px 12px; font-size: .82rem; }
-body.mobile .btn-xs { padding: 6px 10px; font-size: .78rem; }
-
-/* Full-width primary action buttons in section headers */
-body.mobile .sh .btn-p { width: 100%; justify-content: center; margin-top: 8px; }
-body.mobile .sh { flex-wrap: wrap; }
-
-/* Larger form fields */
-body.mobile .fc { padding: 10px 12px; font-size: .95rem; min-height: 42px; }
-body.mobile .fl { font-size: .78rem; }
-
-/* Bigger type for key values */
-body.mobile .sc-val { font-size: 1.5rem; }
-body.mobile .pg-title { font-size: 1.15rem; }
-body.mobile .card-title { font-size: 1rem; }
-
-/* Tables scroll horizontally */
-body.mobile .tw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-body.mobile table { min-width: 480px; font-size: .82rem; }
-
-/* Tabs scroll horizontally */
-body.mobile .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
-body.mobile .tab { white-space: nowrap; padding: 8px 14px; font-size: .82rem; }
-
-/* Merged countdown/goals card — stack vertically on mobile */
-body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
-body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { 
-  display: none; /* hide vertical divider */
-}
-body.mobile #pg-dashboard .card > .flex > div:first-child { 
-  padding-right: 0 !important;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-}
-body.mobile #pg-dashboard .card > .flex > div:last-child { 
-  padding-left: 0 !important;
-}
-
-/* Modal: full screen on mobile */
-body.mobile .modal {
-  max-width: 100% !important;
-  max-height: 95vh;
-  margin: 0;
-  border-radius: var(--r) var(--r) 0 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-body.mobile .ov {
-  align-items: flex-end;
-  padding: 0;
-}
-
-
-
-/* On narrow mobile, hide the logo subtitle to save space */
-body.mobile .logo-tag { display: none; }
-body.mobile .logo-name { font-size: .95rem !important; }
-
-/* Topbar wraps on narrow mobile screens */
-body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 16px 10px; }
-body.mobile .tb-actions { flex-wrap: wrap; gap: 6px; }
-body.mobile .theme-toggle { margin-top: 0; }
-
-/* ── BOTTOM NAV BAR (desktop + mobile) ─────────────────────── */
-/* Labels: long in desktop, short in mobile */
-.mnav-short { display: none; }
-.mnav-long  { display: inline; }
-body.mobile .mnav-short { display: inline; }
-body.mobile .mnav-long  { display: none; }
-
-#mobile-nav {
-  display: flex;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  z-index: 190;
-  padding: 4px 0 max(4px, env(safe-area-inset-bottom));
-}
-
-/* Desktop: icon + label side-by-side, full names */
-.mnav-item {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 12px 6px;
-  cursor: pointer;
-  color: var(--txt3);
-  font-size: .78rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-  border: none;
-  background: none;
-  transition: color .15s;
-  -webkit-tap-highlight-color: transparent;
-  white-space: nowrap;
-}
-.mnav-item .mni { font-size: 1rem; line-height: 1; flex-shrink: 0; }
-.mnav-item.active { color: var(--gold); }
-.mnav-item:hover { color: var(--txt); }
-
-/* Mobile: icon stacked above short label */
-body.mobile .mnav-item {
-  flex-direction: column;
-  gap: 2px;
-  padding: 6px 4px;
-  font-size: .6rem;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  font-weight: 600;
-}
-body.mobile .mnav-item .mni { font-size: 1.2rem; }
-
-/* Content bottom padding so nav bar doesn't cover content */
-#content { padding-bottom: 72px; }
-body.mobile #content { padding-bottom: 90px; }
-
-/* Light mode */
-body.light #mobile-nav { background: var(--bg2); border-top-color: var(--border); }
 
 /* === SCROLLBAR === */
 ::-webkit-scrollbar{width:5px;height:5px}
@@ -777,6 +290,129 @@ body.light .strategy-bk{background:var(--bg3)}
 body.light .strategy-bk .tmpl{background:var(--bg2)}
 body.light ::-webkit-scrollbar-track{background:var(--bg3)}
 body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
+
+/* ============================================================
+   MOBILE LAYOUT MODE  (body.mobile)
+   Auto-applied on iPhone/Android via userAgent + touchPoints
+   ============================================================ */
+
+/* Base */
+body.mobile { font-size: 16px; }
+body.mobile #content { padding: 12px 14px 90px; overflow-x: hidden; }
+
+/* Topbar */
+body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px; }
+body.mobile .tb-actions { flex-wrap: wrap; gap: 6px; }
+body.mobile .theme-toggle { margin-top: 0; }
+body.mobile #tb-actions .btn-s { padding: 3px 8px; font-size: .7rem; min-height: unset; }
+
+/* Logo */
+body.mobile .logo-tag { display: none; }
+body.mobile .logo-name { font-size: .95rem !important; }
+
+/* Section headers: title above button grid */
+body.mobile .sh {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+body.mobile .sh .st { font-size: 1rem; }
+body.mobile .sh > .flex,
+body.mobile .sh > div.flex { width: 100%; flex-wrap: wrap; gap: 6px; }
+body.mobile .sh .btn {
+  flex: 1 1 calc(50% - 3px);
+  min-width: 0;
+  max-width: 100%;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 6px;
+  font-size: .78rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.mobile .sh > button.btn { width: 100%; justify-content: center; }
+body.mobile .sh select.fc { width: 100% !important; }
+
+/* Cards */
+body.mobile .card { padding: 14px; }
+body.mobile .card-title { font-size: .92rem; }
+body.mobile .sc-val { font-size: 1.35rem; }
+
+/* Grids collapse to 1 column */
+body.mobile .g2,
+body.mobile .g3,
+body.mobile .g4,
+body.mobile .fr2,
+body.mobile .fr3 { grid-template-columns: 1fr !important; gap: 10px; }
+
+/* Stat cards stay 2×2 */
+body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
+body.mobile .ga { grid-template-columns: 1fr 1fr !important; }
+body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
+
+/* Dashboard merged card: stack vertically */
+body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
+body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { display: none; }
+body.mobile #pg-dashboard .card > .flex > div:first-child {
+  padding-right: 0 !important;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+body.mobile #pg-dashboard .card > .flex > div:last-child { padding-left: 0 !important; }
+
+/* Tables: horizontal scroll, hide non-essential columns */
+body.mobile .tw {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -14px;
+  padding: 0 14px 4px;
+  width: calc(100% + 28px);
+}
+body.mobile .tw table { min-width: 340px; font-size: .78rem; }
+body.mobile .tw th,
+body.mobile .tw td { padding: 7px 5px; white-space: nowrap; }
+body.mobile .mob-hide { display: none !important; }
+
+/* Month tabs: compact wrap */
+body.mobile .mtabs { gap: 3px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+body.mobile .mtab { padding: 4px 7px; font-size: .65rem; white-space: nowrap; flex-shrink: 0; }
+
+/* Tab bars: horizontal scroll */
+body.mobile .tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+  gap: 2px;
+}
+body.mobile .tab { white-space: nowrap; padding: 7px 10px; font-size: .76rem; flex-shrink: 0; }
+
+/* Forms */
+body.mobile .fc { padding: 9px 11px; font-size: .9rem; min-height: 40px; }
+body.mobile .fl { font-size: .75rem; }
+body.mobile .fg { margin-bottom: 12px; }
+body.mobile .btn { min-height: 38px; }
+body.mobile .btn-sm { padding: 7px 10px; font-size: .78rem; min-height: unset; }
+body.mobile .btn-xs { padding: 5px 8px; font-size: .72rem; min-height: unset; }
+
+/* Settings: full width */
+body.mobile [style*="max-width:560px"] { max-width: 100% !important; }
+
+/* Modals: slide up from bottom */
+body.mobile .ov { align-items: flex-end; padding: 0; }
+body.mobile .modal {
+  max-width: 100% !important;
+  max-height: 92vh;
+  border-radius: var(--r) var(--r) 0 0;
+}
+
+/* Light mode */
+body.light #mobile-nav { background: var(--bg2); border-top-color: var(--border); }
+body.light.mobile #mobile-nav { background: var(--bg2); border-top-color: var(--border); }
+
 </style>
 </head>
 <body>
@@ -825,9 +461,6 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div class="tb-actions" id="tb-actions">
       <div id="tb-theme" class="theme-toggle" style="margin-top:0"><span class="tl">Theme</span>
         <select id="theme-sel" onchange="setTheme(this.value)"><option value="dark">Dark</option><option value="light">Light</option></select>
-      </div>
-      <div id="tb-layout" class="theme-toggle" style="margin-top:0"><span class="tl">Layout</span>
-        <select id="layout-sel" onchange="setLayout(this.value)"><option value="desktop">Desktop</option><option value="mobile">Mobile</option></select>
       </div>
       <button class="btn btn-s" onclick="openModal('help-modal')" title="Help">❓ Help</button>
     </div>
@@ -962,7 +595,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
         <div class="card">
           <div class="card-title">👤 Your Profile</div>
           <div class="fg"><label class="fl">Full Name</label><input class="fc" id="s-name" placeholder="Your Name"></div>
-          <div class="fg"><label class="fl">Birth Date</label><input type="date" class="fc" id="s-birth" value="1998-01-01"></div>
+          <div class="fg"><label class="fl">Birth Date</label><input type="date" class="fc" id="s-birth" value="1998-01-01" style="text-align:left"></div>
           <button class="btn btn-p" onclick="saveSettings()">Save Profile</button>
         </div>
 
@@ -1391,7 +1024,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div id="help-settings" class="hidden">
       <div class="alert al-info" style="font-size:.82rem;line-height:1.7">
         <strong>Settings — Profile, Goals & Data Management</strong><br><br>
-        <strong>Profile:</strong> Enter your name and birth date. Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br><strong>Layout:</strong> Switch between Desktop (bottom nav with full labels, multi-column layout) and Mobile (bottom nav with short labels, single column, larger touch targets). The app auto-detects your device on first visit. Override manually using the Layout selector in the topbar next to the Help button.<br><br>
+        <strong>Profile:</strong> Enter your name and birth date. Set your goals in the <em>Goals</em> section — your #1 priority goal drives the Dashboard countdown. Income is tracked in the Bill Tracker (Income Sources and Log Income) and the Budget section.<br><br><strong>Layout:</strong> Switch between Desktop (bottom nav with full labels, multi-column layout) and Mobile (bottom nav with short labels, single column, larger touch targets). The app auto-detects your device on first visit. The app auto-detects your device on every load — no manual override needed.<br><br>
         <strong>Financial Readiness Gauge:</strong> The gauge scores your financial health using your savings balance, debt load, credit score, and budget surplus. Add savings accounts via the Goals section to improve the savings component.<br><br>
         <strong>Data Management:</strong><br>
         • <strong>Export All Data (JSON)</strong> — Saves a complete backup of everything in the app. Do this regularly!<br>
@@ -1447,6 +1080,18 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
     <div class="mh">
       <div class="mt">📋 FamilyFinance — Version History</div>
       <button class="mx" onclick="closeModal('changelog-modal')">✕</button>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.7.8 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed corrupt document structure — duplicate CSS block (18KB) had been prepended inside the style tag, causing mobile CSS to be overridden by base CSS; now one clean style block</li>
+        <li>Removed Layout toggle from topbar — device auto-detection always applies; no manual override needed</li>
+        <li>Mobile section headers now stretch full width with buttons in a 2-up grid; no overflow on Bills, Budget, Debt, or Credit</li>
+        <li>Month tabs and tab bars scroll horizontally with touch; no wrapping or overflow</li>
+        <li>Help button in topbar resized to match theme selector height on mobile</li>
+        <li>Birth Date field in Settings left-aligned to match Full Name field</li>
+      </ul>
     </div>
 
     <div class="cl-entry">
@@ -1926,7 +1571,7 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.7.7';
+const APP_VERSION = '1.7.8';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -5194,9 +4839,7 @@ function setLayout(mode) {
   } else {
     document.body.classList.remove('mobile');
   }
-  localStorage.setItem('familyfinance_layout', mode);
-  if ($$('layout-sel')) $$('layout-sel').value = mode;
-  if ($$('layout-sel-sb')) $$('layout-sel-sb').value = mode;
+  // layout auto-detected — not persisted
   // Re-render current page so gauge canvas redraws at correct size
   if (window._appLoaded && window._currentPage) renderPage(window._currentPage);
 }
@@ -5684,14 +5327,12 @@ function init() {
   // Apply theme class immediately (before render, to avoid flash)
   var savedTheme = localStorage.getItem('familyfinance_theme') || 'dark';
   if (savedTheme === 'light') document.body.classList.add('light');
-  // Auto-detect device type on every load — override with saved preference
+  // Auto-detect device type on every load — no manual override needed
   var isMobileDevice = (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
     (window.innerWidth < 768 && navigator.maxTouchPoints > 0)
   );
-  var savedLayout = localStorage.getItem('familyfinance_layout');
-  // If user hasn't manually set a preference, always follow device detection
-  if (!savedLayout) savedLayout = isMobileDevice ? 'mobile' : 'desktop';
+  var savedLayout = isMobileDevice ? 'mobile' : 'desktop';
   if (savedLayout === 'mobile') document.body.classList.add('mobile');
 
   // ver-badge removed — version shown in Help modal only
