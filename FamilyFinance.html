@@ -295,11 +295,11 @@ body.light ::-webkit-scrollbar-thumb{background:var(--border2)}
    MOBILE LAYOUT MODE  (body.mobile)
    ============================================================ */
 
-/* Base */
+/* Base — use overflow-x:clip so descendants can still be scroll containers */
 body.mobile { font-size: 16px; }
-body.mobile #mn { max-width: 100vw; overflow-x: hidden; }
-body.mobile #content { padding: 12px 14px 90px; overflow-x: hidden; max-width: 100vw; }
-body.mobile .section-page { overflow-x: hidden; max-width: 100%; }
+body.mobile #mn { max-width: 100vw; overflow-x: clip; }
+body.mobile #content { padding: 12px 14px 90px; overflow-x: clip; max-width: 100vw; }
+body.mobile .section-page { overflow-x: clip; }
 
 /* Topbar */
 body.mobile #topbar { flex-wrap: wrap; row-gap: 6px; padding: 10px 14px; }
@@ -311,38 +311,27 @@ body.mobile #tb-actions .btn-s { padding: 3px 8px; font-size: .7rem; min-height:
 body.mobile .logo-tag { display: none; }
 body.mobile .logo-name { font-size: .95rem !important; }
 
-/* Section headers: title above button grid */
-body.mobile .sh {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-  width: 100%;
-  max-width: 100%;
-}
+/* Section headers */
+body.mobile .sh { flex-direction: column; align-items: stretch; gap: 8px; width: 100%; }
 body.mobile .sh .st { font-size: 1rem; }
 body.mobile .sh > div { width: 100%; max-width: 100%; }
 body.mobile .sh > div.flex { flex-wrap: wrap; gap: 6px; }
 body.mobile .sh .btn {
   flex: 1 1 calc(50% - 3px);
-  min-width: 0;
-  max-width: 100%;
-  justify-content: center;
-  text-align: center;
-  padding: 8px 6px;
-  font-size: .78rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0; max-width: 100%;
+  justify-content: center; text-align: center;
+  padding: 8px 6px; font-size: .78rem;
+  overflow: hidden; text-overflow: ellipsis;
 }
 body.mobile .sh > button.btn { width: 100%; justify-content: center; }
 body.mobile .sh select.fc { width: 100% !important; }
 
 /* Cards */
-body.mobile .card { padding: 14px; max-width: 100%; }
+body.mobile .card { padding: 14px; max-width: 100%; overflow-x: clip; }
 body.mobile .card-title { font-size: .92rem; }
 body.mobile .sc-val { font-size: 1.35rem; }
 
-/* Grids collapse to 1 column */
+/* Grids */
 body.mobile .g2,
 body.mobile .g3,
 body.mobile .g4,
@@ -352,49 +341,62 @@ body.mobile #dash-stats { grid-template-columns: 1fr 1fr !important; }
 body.mobile .ga { grid-template-columns: 1fr 1fr !important; }
 body.mobile .cd-grid { grid-template-columns: repeat(2,1fr); }
 
-/* Dashboard merged card: stack vertically */
+/* Dashboard merged card */
 body.mobile #pg-dashboard .card > .flex { flex-direction: column; }
 body.mobile #pg-dashboard .card > .flex > div[style*="border-left"] { display: none; }
 body.mobile #pg-dashboard .card > .flex > div:first-child {
   padding-right: 0 !important;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 14px;
-  margin-bottom: 14px;
+  padding-bottom: 14px; margin-bottom: 14px;
 }
 body.mobile #pg-dashboard .card > .flex > div:last-child { padding-left: 0 !important; }
 
-/* Tables: scroll horizontally within their card only — no bleed */
+/* Tables — scroll within card, shadow hint on right edge */
 body.mobile .tw {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
-  max-width: 100%;
+  width: 100%; max-width: 100%;
+  position: relative;
+  /* Subtle right-edge shadow as scroll indicator */
+  background:
+    linear-gradient(to right, var(--bg3) 0%, transparent 20px) left no-repeat,
+    linear-gradient(to left, var(--bg3) 0%, transparent 20px) right no-repeat,
+    linear-gradient(to right, rgba(0,0,0,.4) 0%, transparent 16px) left no-repeat,
+    linear-gradient(to left, rgba(0,0,0,.3) 0%, transparent 16px) right no-repeat;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
-body.mobile .tw table { min-width: 320px; font-size: .78rem; }
+body.mobile .tw table { min-width: 300px; font-size: .78rem; }
 body.mobile .tw th,
 body.mobile .tw td { padding: 7px 6px; white-space: nowrap; }
 body.mobile .mob-hide { display: none !important; }
 
-/* Month tabs: scroll horizontally, no wrap, contained */
+/* Month tabs — scroll with fade hint */
 body.mobile .mtabs {
-  gap: 3px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap;
-  max-width: 100%;
+  gap: 3px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap; max-width: 100%;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 20px) left no-repeat,
+    linear-gradient(to left, var(--bg) 0%, transparent 20px) right no-repeat,
+    linear-gradient(to right, rgba(0,0,0,.35) 0%, transparent 14px) left no-repeat,
+    linear-gradient(to left, rgba(0,0,0,.25) 0%, transparent 14px) right no-repeat;
+  background-size: 40px 100%, 40px 100%, 12px 100%, 12px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 body.mobile .mtab { padding: 4px 7px; font-size: .65rem; white-space: nowrap; flex-shrink: 0; }
 
-/* Tab bars: scroll horizontally, contained — override flex-shrink:0 from base */
+/* Tab bars — scroll with fade hint */
 body.mobile .tabs {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap;
-  flex-shrink: 1;
-  max-width: 100%;
-  width: 100%;
-  padding-bottom: 2px;
-  gap: 2px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap; flex-shrink: 1; max-width: 100%; width: 100%;
+  padding-bottom: 2px; gap: 2px;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 20px) left no-repeat,
+    linear-gradient(to left, var(--bg) 0%, transparent 20px) right no-repeat,
+    linear-gradient(to right, rgba(0,0,0,.35) 0%, transparent 14px) left no-repeat,
+    linear-gradient(to left, rgba(0,0,0,.25) 0%, transparent 14px) right no-repeat;
+  background-size: 40px 100%, 40px 100%, 12px 100%, 12px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 body.mobile .tab { white-space: nowrap; padding: 7px 10px; font-size: .76rem; flex-shrink: 0; }
 
@@ -406,25 +408,26 @@ body.mobile .btn { min-height: 38px; }
 body.mobile .btn-sm { padding: 7px 10px; font-size: .78rem; min-height: unset; }
 body.mobile .btn-xs { padding: 5px 8px; font-size: .72rem; min-height: unset; }
 
-/* Date inputs on iOS: force full width, left alignment */
+/* Date inputs on iOS */
 body.mobile input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box;
   text-align: left !important;
-  -webkit-text-align-last: left;
 }
 
-/* Settings: full width */
+/* Settings full width */
 body.mobile [style*="max-width:560px"] { max-width: 100% !important; width: 100% !important; }
 
-/* Modals: slide up from bottom */
+/* Surplus Allocation — prevent text overflow */
+body.mobile .strategy-bk,
+body.mobile .strategy-bk > div { max-width: 100%; word-break: break-word; overflow-wrap: break-word; }
+
+/* Modals */
 body.mobile .ov { align-items: flex-end; padding: 0; }
-body.mobile .modal {
-  max-width: 100% !important;
-  max-height: 92vh;
-  border-radius: var(--r) var(--r) 0 0;
-}
+body.mobile .modal { max-width: 100% !important; max-height: 92vh; border-radius: var(--r) var(--r) 0 0; }
 /* ── BOTTOM NAV BAR (desktop + mobile) ───────────────────── */
 /* Label variants: long names on desktop, short on mobile */
 .mnav-short { display: none; }
@@ -665,7 +668,7 @@ body.mobile #content { padding-bottom: 90px; }
         <div class="card">
           <div class="card-title">👤 Your Profile</div>
           <div class="fg"><label class="fl">Full Name</label><input class="fc" id="s-name" placeholder="Your Name"></div>
-          <div class="fg"><label class="fl">Birth Date</label><input type="date" class="fc" id="s-birth" value="1998-01-01" style="text-align:left;max-width:100%"></div>
+          <div class="fg"><label class="fl">Birth Date</label><input type="date" class="fc" id="s-birth" value="1998-01-01"></div>
           <button class="btn btn-p" onclick="saveSettings()">Save Profile</button>
         </div>
 
@@ -1170,6 +1173,16 @@ body.mobile #content { padding-bottom: 90px; }
     <div class="mh">
       <div class="mt">📋 FamilyFinance — Version History</div>
       <button class="mx" onclick="closeModal('changelog-modal')">✕</button>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-ver">v1.8.1 <span class="cl-tag cl-tag-fix">Fix</span><span class="cl-date">April 2026</span></div>
+      <ul class="cl-items">
+        <li>Fixed Budget Monthly and Medium Term overflow — root cause was overflow-x:hidden on #content and .section-page blocking child scroll containers; replaced with overflow-x:clip which clips visually without preventing descendant scrolling</li>
+        <li>Income Sources, Expense Budget, 1-5 Year Targets, and Surplus Allocation now fit cleanly on mobile and scroll horizontally within their cards where needed</li>
+        <li>Scroll indicator added — tables, month tabs, and tab bars show a subtle fade shadow on the right edge when more content is available to the right; shadow disappears when scrolled to the end</li>
+        <li>Birth Date field: -webkit-appearance:none applied on mobile to override iOS Safari native date widget width and force left alignment</li>
+      </ul>
     </div>
 
     <div class="cl-entry">
@@ -1680,7 +1693,7 @@ body.mobile #content { padding-bottom: 90px; }
 // ============================================================
 // FamilyFinance — Personal Finance App  v1.0.0
 // ============================================================
-const APP_VERSION = '1.8.0';
+const APP_VERSION = '1.8.1';
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
